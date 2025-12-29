@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import { TypeWriter } from "../components/TypeWriter"
+import { Hero } from "../components/Hero"
 
 interface Scene1Props {
   onNext: () => void
@@ -9,12 +10,13 @@ interface Scene1Props {
 export const Scene1_Title = ({ onNext }: Scene1Props) => {
   const [isClicked, setIsClicked] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [showDiego, setShowDiego] = useState(false)
 
   const handleEarthClick = () => {
     setIsClicked(true)
 
     setTimeout(() => {
-      onNext()
+      setShowDiego(true)
     }, 1500)
   }
 
@@ -36,7 +38,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
 
       {/* Rotating Earth */}
       <motion.div 
-        className="absolute cursor-pointer z-20"
+        className={`absolute ${isClicked ? '' : 'cursor-pointer' } z-20 `}
         initial={{
           right: '-192px',
           bottom: '-448px',
@@ -56,8 +58,8 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
           y: 0
         }}
         transition={{ duration: 1.2, ease: "easeInOut" }}
-        onClick={handleEarthClick}
-        onHoverStart={() => setIsHovered(true)}
+        onClick={!isClicked ? handleEarthClick : undefined}
+        onHoverStart={() => !isClicked && setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
       >
         <motion.img 
@@ -124,7 +126,6 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
       </motion.div>
 
 
-
       {/* Content */}
       <AnimatePresence>
         {!isClicked && (
@@ -185,6 +186,51 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      
+      {/* Hero Character - Diego */}
+      <AnimatePresence>
+        {showDiego && (
+          <Hero 
+            x="-10vw"
+            y="-10vh"
+            scale={2}
+            animate={{
+              x: "15vw",
+              y: "40vh",
+              scale: 2,
+              opacity: 1
+            }}
+            transition={{
+              duration: 1.2,
+              ease: "easeOut"
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      
+      {/* Diego Introduction Dialogue */}
+      <AnimatePresence>
+        {showDiego && (
+          <motion.div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+          >
+            <p className="text-lg md:text-xl lg:text-2xl text-center">
+              <TypeWriter
+                text="Meet Diego, a curious time traveler who wants to understand how life on Earth changed through millions of years. Together with Diego, you will travel through time and discover how simple life forms transformed into the diverse organisms we see today."
+                delay={1500}
+                speed={25}
+                className="text-white font-nexa"
+              />
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
 
       {/* Animated Stars */}
       {[...Array(20)].map((_, i) => (
