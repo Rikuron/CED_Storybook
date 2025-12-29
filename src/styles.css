@@ -37,3 +37,31 @@ code {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+@font-face {
+  font-family: helvetica-regular;
+  src: url('/fonts/HelveticaNowDisplay-Regular.ttf');
+}
+
+@font-face {
+  font-family: helvetica-bold;
+  src: url('/fonts/HelveticaNowDisplay-Bold.ttf');
+}
+
+@font-face {
+  font-family: nexa;
+  src: url('/fonts/Nexa-Book.ttf');
+}
+
+@font-face {
+  font-family: canva-sans-bold;
+  src: url('/fonts/CanvaSans-Bold.otf');
+}
+
+@theme inline {
+  --font-helvetica-regular: helvetica-regular, "sans-serif";
+  --font-helvetica-bold: helvetica-bold, "sans-serif";
+  --font-nexa: nexa, "sans-serif";
+  --font-canva-sans-bold: canva-sans-bold, "sans-serif";
+}
