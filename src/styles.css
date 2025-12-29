@@ -55,6 +55,11 @@ code {
 }
 
 @font-face {
+  font-family: canva-sans-regular;
+  src: url('/fonts/CanvaSans-Regular.otf');
+}
+
+@font-face {
   font-family: canva-sans-bold;
   src: url('/fonts/CanvaSans-Bold.otf');
 }
@@ -63,5 +68,6 @@ code {
   --font-helvetica-regular: helvetica-regular, "sans-serif";
   --font-helvetica-bold: helvetica-bold, "sans-serif";
   --font-nexa: nexa, "sans-serif";
+  --font-canva-sans-regular: canva-sans-regular, "sans-serif";
   --font-canva-sans-bold: canva-sans-bold, "sans-serif";
 }

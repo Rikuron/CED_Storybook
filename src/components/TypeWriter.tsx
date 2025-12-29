@@ -30,20 +30,24 @@ export const TypeWriter = ({
     if (!started) return
 
     let currentIndex = 0
+    let hasCompleted = false
 
     const interval = setInterval(() => {
       if (currentIndex <= text.length) {
         setDisplayedText(text.slice(0, currentIndex))
         currentIndex++
       } else {
-        clearInterval(interval)
-        setCompleted(true)
-        onComplete?.()
+        if (!hasCompleted) {
+          hasCompleted = true
+          clearInterval(interval)
+          setCompleted(true)
+          onComplete?.()
+        }
       }
     }, speed)
 
     return () => clearInterval(interval)
-  }, [started, text, speed, onComplete])
+  }, [started, text, speed])
 
   return (
     <motion.span
