@@ -196,6 +196,48 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
                 delay={500}
                 speed={25}
                 className="text-white font-canva-sans-bold"
+                onComplete={() => {
+                  setTimeout(() => setDialoguePhase(2), 2500)
+                }}
+              />
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Diego's Speech Bubble 2 */}
+      <AnimatePresence>
+        {showDialogue && dialoguePhase === 2 && (
+          <SpeechBubble
+            text="Ayt bet"
+            position={{ top: '12vh', left: '26vw' }}
+            delay={500}
+            speed={40}
+            tailPosition="bottom-left"
+            variant="normal"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Second Narration Dialogue */}
+      <AnimatePresence>
+        {dialoguePhase === 2 && (
+          <motion.div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <p 
+              className="text-lg md:text-xl lg:text-2xl text-center"
+              style={{ WebkitTextStroke: '1px #000000' }}
+            >
+              <TypeWriter
+                text="Though simple, they carried the building blocks of all future life."
+                delay={500}
+                speed={25}
+                className="text-white font-canva-sans-bold"
                 onComplete={() => {}}
               />
             </p>
