@@ -12,6 +12,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
   const [diegoEntered, setDiegoEntered] = useState(false)
   const [showDialogue, setShowDialogue] = useState(false)
   const [dialoguePhase, setDialoguePhase] = useState(0)
+  const [isDiving, setIsDiving] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,6 +28,14 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
       clearTimeout(dialogueTimer)
     }
   }, [])
+
+  const handleDive = () => {
+    setIsDiving(true)
+
+    setTimeout(() => {
+      onNext()
+    }, 2000)
+  }
 
   return (
     <motion.div
@@ -107,7 +116,12 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
             x="25vw"
             y="-20vh"
             scale={1.5}
-            animate={{
+            animate={isDiving ? {
+              x: '43vw',
+              y: '80vh',
+              scale: 0.8,
+              opacity: 0
+            } : {
               x: "15vw",
               y: "17.5vh",
               scale: 1.5,
@@ -205,7 +219,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         )}
       </AnimatePresence>
 
-      {/* Diego's Speech Bubble 2 */}
+      {/* Diego's Speech Bubble 3 */}
       <AnimatePresence>
         {showDialogue && dialoguePhase === 2 && (
           <SpeechBubble
@@ -219,7 +233,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         )}
       </AnimatePresence>
 
-      {/* Second Narration Dialogue */}
+      {/* Third Narration Dialogue */}
       <AnimatePresence>
         {dialoguePhase === 2 && (
           <motion.div
@@ -238,10 +252,87 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
                 delay={500}
                 speed={25}
                 className="text-white font-canva-sans-bold"
-                onComplete={() => {}}
+                onComplete={() => {
+                  setTimeout(() => setDialoguePhase(3), 1000)
+                }}
               />
             </p>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+
+      {/* Orb to Proceed */}
+      <AnimatePresence>
+        {dialoguePhase === 3 && !isDiving && (
+          <motion.div
+            className="absolute z-40 cursor-pointer"
+            style={{
+              left: '43.5%',
+              bottom: '20%',
+              transform: 'translateX(-50%)'
+            }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            onClick={handleDive}
+          >
+            {/* Glow Effect */}
+            <motion.div 
+              className="absolute inset-0 rounded-full bg-blue-400/30"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 0.2, 0.5]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              style={{ filter: 'blur(20px)' }}
+            />
+
+            {/* Orb */}
+            <motion.div
+              className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-linear-to-br from-cyan-300/40 via-blue-400/40 to-blue-600/40 shadow-lg"
+              animate={{
+                boxShadow: [
+                  '0 0 30px rgba(59, 130, 246, 0.6)',
+                  '0 0 60px rgba(59, 130, 246, 0.8)',
+                  '0 0 30px rgba(59, 130, 246, 0.6)'
+                ]
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              whileHover={{ scale: 1.1 }}
+            />
+            
+            {/* Click hint */}
+            <motion.p
+              className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-white text-sm font-canva-sans-bold whitespace-nowrap"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              style={{ textShadow: '0 0 10px rgba(59, 130, 246, 0.8)' }}
+            >
+              Click to Explore
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Diving effect - water overlay */}
+      <AnimatePresence>
+        {isDiving && (
+          <motion.div
+            className="absolute inset-0 z-50 bg-linear-to-b from-transparent via-blue-900/50 to-blue-950"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeIn" }}
+          />
         )}
       </AnimatePresence>
 
