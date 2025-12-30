@@ -261,60 +261,60 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
 
 
       {/* Atmosphere Entry Overlay */}
-<AnimatePresence>
-  {enteringEarth && (
-    <>
-      {/* Sky background */}
-      <motion.div 
-        className="absolute inset-0 z-30 pointer-events-none bg-linear-to-b from-blue-300 via-blue-100 to-white"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
-      
-      {/* Multiple cloud layers rushing past */}
-      {[...Array(5)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute z-40 pointer-events-none"
-          style={{
-            width: '200%',
-            height: '60%',
-            top: `${10 + i * 15}%`,
-            left: '-50%',
-            background: 'url("/Initial Assets/clouds.png")',
-            backgroundSize: 'cover',
-            filter: `blur(${2 + i}px)`,
-            opacity: 0.7 - i * 0.1,
-          }}
-          initial={{ 
-            x: i % 2 === 0 ? '-30%' : '30%', 
-            y: '100vh',
-            scale: 1 + i * 0.2
-          }}
-          animate={{ 
-            x: i % 2 === 0 ? '30%' : '-30%', 
-            y: '-100vh',
-            scale: 1.5 + i * 0.2
-          }}
-          transition={{ 
-            duration: 2 - i * 0.2, 
-            delay: i * 0.15,
-            ease: "easeIn" 
-          }}
-        />
-      ))}
-      
-      {/* White flash at the end */}
-      <motion.div 
-        className="absolute inset-0 z-50 bg-white pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.5, ease: "easeIn" }}
-      />
-    </>
-  )}
-</AnimatePresence>
+      <AnimatePresence>
+        {enteringEarth && (
+          <>
+            {/* Sky background */}
+            <motion.div 
+              className="absolute inset-0 z-30 pointer-events-none bg-linear-to-b from-blue-300 via-blue-100 to-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            />
+            
+            {/* Multiple cloud layers rushing past */}
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute z-40 pointer-events-none"
+                style={{
+                  width: '200%',
+                  height: '60%',
+                  top: `${10 + i * 15}%`,
+                  left: '-50%',
+                  background: 'url("/Initial Assets/clouds.png")',
+                  backgroundSize: 'cover',
+                  filter: `blur(${2 + i}px)`,
+                  opacity: 0.7 - i * 0.1,
+                }}
+                initial={{ 
+                  x: i % 2 === 0 ? '-30%' : '30%', 
+                  y: '100vh',
+                  scale: 1 + i * 0.2
+                }}
+                animate={{ 
+                  x: i % 2 === 0 ? '30%' : '-30%', 
+                  y: '-100vh',
+                  scale: 1.5 + i * 0.2
+                }}
+                transition={{ 
+                  duration: 2 - i * 0.2, 
+                  delay: i * 0.15,
+                  ease: "easeIn" 
+                }}
+              />
+            ))}
+            
+            {/* White flash at the end */}
+            <motion.div 
+              className="absolute inset-0 z-50 bg-white pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.5, ease: "easeIn" }}
+            />
+          </>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }
