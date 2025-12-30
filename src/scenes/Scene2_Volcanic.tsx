@@ -11,6 +11,7 @@ interface Scene2Props {
 export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
   const [diegoEntered, setDiegoEntered] = useState(false)
   const [showDialogue, setShowDialogue] = useState(false)
+  const [dialoguePhase, setDialoguePhase] = useState(0)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -121,9 +122,9 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         )}
       </AnimatePresence>
 
-      {/* Diego's Speech Bubble */}
+      {/* Diego's Speech Bubble 1 */}
       <AnimatePresence>
-        {showDialogue && (
+        {showDialogue && dialoguePhase === 0 && (
           <SpeechBubble
             text="What the...!"
             position={{ top: '12vh', left: '26vw' }}
@@ -135,9 +136,9 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         )}
       </AnimatePresence>
 
-      {/* Dialogue */}
+      {/* First Narration Dialogue */}
       <AnimatePresence>
-        {showDialogue && (
+        {showDialogue && dialoguePhase === 0 && (
           <motion.div
             className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
             initial={{ y: 100, opacity: 0 }}
@@ -150,6 +151,48 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
             >
               <TypeWriter
                 text="Diego stepped onto a strange version of Earth—hot, rocky, and empty. There were no trees, animals, or people. The oceans were forming, filled with chemicals and energy from heat and lightning."
+                delay={500}
+                speed={25}
+                className="text-white font-canva-sans-bold"
+                onComplete={() => {
+                  setTimeout(() => setDialoguePhase(1), 2500)
+                }}
+              />
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Diego's Speech Bubble 2 */}
+      <AnimatePresence>
+        {showDialogue && dialoguePhase === 1 && (
+          <SpeechBubble
+            text="?"
+            position={{ top: '12vh', left: '26vw' }}
+            delay={500}
+            speed={40}
+            tailPosition="bottom-left"
+            variant="thought"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Second Narration Dialogue */}
+      <AnimatePresence>
+        {dialoguePhase === 1 && (
+          <motion.div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <p 
+              className="text-lg md:text-xl lg:text-2xl text-center"
+              style={{ WebkitTextStroke: '1px #000000' }}
+            >
+              <TypeWriter
+                text="Deep beneath the water, tiny living organisms appeared. These single-celled organisms were the first life forms, capable of reproduction and basic survival."
                 delay={500}
                 speed={25}
                 className="text-white font-canva-sans-bold"
