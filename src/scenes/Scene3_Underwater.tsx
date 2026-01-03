@@ -4,6 +4,7 @@ import { Hero } from "../components/Hero"
 import { SpeechBubble } from "../components/SpeechBubble"
 import { FunfactPopup } from "../components/FunfactPopup"
 import { unicellInfo } from "../data/unicellInfo"
+import { OrganismInfoBox } from "../components/OrganismInfoBox"
 
 interface Scene3Props {
   onNext: () => void
@@ -12,7 +13,7 @@ interface Scene3Props {
 export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
   const [diegoEntered, setDiegoEntered] = useState(false)
   const [showContent, setShowContent] = useState(false)
-  const [enlargedOrganism, setEnlargedOrganism] = useState<number | null>(null)
+  const [hoveredOrganism, setHoveredOrganism] = useState<number | null>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => setDiegoEntered(true), 500)
@@ -97,7 +98,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Speech Bubble */}
       <AnimatePresence>
-        {showContent && !enlargedOrganism && (
+        {showContent && (
           <SpeechBubble
             text="Oh, it's not that bad"
             position={{ top: '26vh', left: '26vw' }}
@@ -121,58 +122,46 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Floating Organisms */}
       {unicellInfo.map((org) => (
-      <motion.div
-        key={org.id}
-        className="absolute cursor-pointer z-20"
-        style={{ left: org.position.x, top: org.position.y }}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={enlargedOrganism === org.id ? {
-          left: '50%',
-          top: '50%',
-          x: '-50%',
-          y: '-50%',
-          scale: 4,
-          opacity: 1,
-          zIndex: 50
-        } : {
-          opacity: 1,
-          scale: 1,
-          y: [0, -10, 0],
-        }}
-        transition={enlargedOrganism === org.id ? {
-          duration: 0.5,
-          ease: "easeOut"
-        } : {
-          y: {
-            duration: org.floatDuration || 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          },
-          opacity: { delay: 2 + org.id * 0.3, duration: 0.5 }
-        }}
-        onClick={() => setEnlargedOrganism(enlargedOrganism === org.id ? null : org.id)}
-        whileHover={{ scale: enlargedOrganism ? 1 : 1.2 }}
-      >
-        <img 
-          src={org.image} 
-          alt={org.scientific_name}
-          style={{ width: org.size, height: 'auto' }}
-          className="drop-shadow-lg"
-        />
-      </motion.div>
-    ))}
-    {/* Dark overlay when organism is enlarged */}
-    <AnimatePresence>
-      {enlargedOrganism && (
         <motion.div
-          className="fixed inset-0 bg-black/60 z-30"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setEnlargedOrganism(null)}
-        />
-      )}
-    </AnimatePresence>
+          key={org.id}
+          className={`absolute cursor-pointer ${hoveredOrganism === org.id ? 'z-50' : 'z-20'}`}
+          style={{ left: org.position.x, top: org.position.y }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: 1,
+            scale: 2,
+            y: [0, -10, 0]
+          }}
+          transition={{
+            y: {
+              duration: org.floatDuration || 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            opacity: { delay: 2 + org.id * 0.3, duration: 0.5 }
+          }}
+          onHoverStart={() => setHoveredOrganism(org.id)}
+          onHoverEnd={() => setHoveredOrganism(null)}
+          whileHover={{ scale: 2.5 }}
+        >
+          <img 
+            src={org.image} 
+            alt={org.scientific_name}
+            style={{ width: org.size, height: 'auto' }}
+            className="drop-shadow-lg"
+          />
+        </motion.div>
+      ))}
+
+      {/* Info Box on hover */}
+      <AnimatePresence>
+        {hoveredOrganism && (
+          <OrganismInfoBox 
+            organism={unicellInfo.find(org => org.id === hoveredOrganism)!} 
+            position={unicellInfo.find(org => org.id === hoveredOrganism)!.position}
+          />
+        )}
+      </AnimatePresence>
 
     </motion.div>
   )

@@ -31,7 +31,7 @@ export const unicellInfo: UnicellInfo[] = [
       { feature_item: "It is a facultative anaerobe, meaning it can grow in both the presence and absence of oxygen." }
     ],
     image: "/Initial Assets/unicell_1.png",
-    position: { x: '55%', y: '45%' },
+    position: { x: '55%', y: '25%' },
     size: 60,
     floatDuration: 2.5
   }, 
@@ -48,7 +48,7 @@ export const unicellInfo: UnicellInfo[] = [
       { feature_item: "It is primarily photoautotrophic (produces its own food using sunlight via photosynthesis) but can also grow in the dark (heterotrophically) if provided with an organic carbon source like acetate." },
     ],
     image: "/Initial Assets/unicell_2.png",
-    position: { x: '65%', y: '55%' },
+    position: { x: '70%', y: '45%' },
     size: 40,
     floatDuration: 2.2
   },
@@ -65,7 +65,7 @@ export const unicellInfo: UnicellInfo[] = [
       { feature_item: "A light-sensitive red eyespot (stigma) helps the organism detect light sources, allowing it to move towards light for photosynthesis (phototaxis)." }
     ],
     image: "/Initial Assets/unicell_3.png",
-    position: { x: '75%', y: '40%' },
+    position: { x: '85%', y: '30%' },
     size: 50,
     floatDuration: 2.8
   },
@@ -83,7 +83,7 @@ export const unicellInfo: UnicellInfo[] = [
       { feature_item: "It reproduces asexually through binary fission, where one cell divides into two identical daughter cells." }
     ],
     image: "/Initial Assets/unicell_4.png",
-    position: { x: '60%', y: '65%' },
+    position: { x: '60%', y: '80%' },
     size: 35,
     floatDuration: 3.0
   },
@@ -100,7 +100,7 @@ export const unicellInfo: UnicellInfo[] = [
       { feature_item: "It can use trichocysts, small sacs embedded in the outer cytoplasm (pellicle), for defense or anchorage." },
     ],
     image: "/Initial Assets/unicell_5.png",
-    position: { x: '70%', y: '70%' },
+    position: { x: '80%', y: '70%' },
     size: 45,
     floatDuration: 2.0
   }
