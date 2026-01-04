@@ -18,7 +18,7 @@ export const ChallengePrompt = ({ title, question, onNext }: ChallengePromptProp
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <h2 
-          className="text-yellow-400 font-canva-sans-bold text-3xl md:text-4xl uppercase mb-3"
+          className="text-yellow-400 font-canva-sans-bold text-3xl md:text-4xl uppercase mb-6"
           style={{ WebkitTextStroke: '1px #000' }}
         >
           {title}

@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
+import { NarrationDialogue } from "../components/NarrationDialogue"
 import { TypeWriter } from "../components/TypeWriter"
 import { Hero } from "../components/Hero"
 
@@ -215,7 +216,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
           <Hero 
             x="-10vw"
             y="-10vh"
-            scale={2}
+            scale={1.5}
             animate={enteringEarth ? {
               x: "45vw",
               y: "45vh",
@@ -224,7 +225,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
             } : {
               x: "15vw",
               y: "40vh",
-              scale: 2,
+              scale: 1.5,
               opacity: 1
             }}
             transition={{
@@ -239,23 +240,12 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
       {/* Diego Introduction Dialogue */}
       <AnimatePresence>
         {showDiego && !enteringEarth && (
-          <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
-          >
-            <p className="text-lg md:text-xl lg:text-2xl text-center">
-              <TypeWriter
-                text="Meet Diego, a curious time traveler who wants to understand how life on Earth changed through millions of years. Together with Diego, you will travel through time and discover how simple life forms transformed into the diverse organisms we see today."
-                delay={1500}
-                speed={25}
-                className="text-white font-canva-sans-regular"
-                onComplete={() => setDialogueComplete(true)}
-              />
-            </p>
-          </motion.div>
+          <NarrationDialogue
+            text="Meet Diego, a curious time traveler who wants to understand how life on Earth changed through millions of years. Together with Diego, you will travel through time and discover how simple life forms transformed into the diverse organisms we see today."
+            delay={1500}
+            speed={25}
+            onComplete={() => setDialogueComplete(true)}
+          />
         )}
       </AnimatePresence>
 

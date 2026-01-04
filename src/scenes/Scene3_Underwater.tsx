@@ -4,19 +4,26 @@ import { Hero } from "../components/Hero"
 import { SpeechBubble } from "../components/SpeechBubble"
 import { FunfactPopup } from "../components/FunfactPopup"
 import { unicellInfo } from "../data/unicellInfo"
+import { FloatingOrganisms } from "../components/FloatingOrganisms"
 import { OrganismInfoBox } from "../components/OrganismInfoBox"
+import { FloatingFish } from "../components/FloatingFish"
 import { ChallengePrompt } from "../components/ChallengePrompt"
+import { NarrationDialogue } from "../components/NarrationDialogue"
 
-// interface Scene3Props {
-//   onNext: () => void
-// }
+interface Scene3Props {
+  onNext: () => void
+}
 
-export const Scene3_Underwater = () => {
+export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
   const [diegoEntered, setDiegoEntered] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const [hoveredOrganism, setHoveredOrganism] = useState<number | null>(null)
   const [challengeMode, setChallengeMode] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [transitionDialoguePhase, setTransitionDialoguePhase] = useState(0)
+  const [showFishChallenge, setShowFishChallenge] = useState(false)
+  const [isFinalTransition, setIsFinalTransition] = useState(false)
+  const [showFinalNarration, setShowFinalNarration] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setDiegoEntered(true), 500)
@@ -30,9 +37,6 @@ export const Scene3_Underwater = () => {
 
   const handleNextPart = () => {
     setIsTransitioning(true)
-    // setTimeout(() => {
-    //   onNext()
-    // }, 2500)
   }
 
   return (
@@ -152,46 +156,19 @@ export const Scene3_Underwater = () => {
       </AnimatePresence>
 
       {/* Floating Organisms */}
-      {unicellInfo.map((org) => (
-        <motion.div
-          key={org.id}
-          className={`absolute ${challengeMode ? '' : 'cursor-pointer'} ${hoveredOrganism === org.id ? 'z-50' : 'z-20'}`}
-          style={{ left: org.position.x, top: org.position.y }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={isTransitioning ? {
-            opacity: 0,
-            x: '-100vw',
-            scale: challengeMode ? 5 : 2
-          } : {
-            opacity: 1,
-            scale: challengeMode ? 5 : 2,
-            y: [0, -10, 0]
-          }}
-          transition={{
-            y: {
-              duration: org.floatDuration || 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            },
-            opacity: {
-              delay: 2 + org.id * 0.3,
-              duration: 0.5
-            },
-            scale: { duration: 0.5 }
-          }}
-          onHoverStart={() => !challengeMode && setHoveredOrganism(org.id)}
-          onHoverEnd={() => !challengeMode && setHoveredOrganism(null)}
-          whileHover={challengeMode ? {} : { scale: 2.5 }}
-          onClick={() => setChallengeMode(true)}
-        >
-          <img 
-            src={org.image} 
-            alt={org.scientific_name}
-            style={{ width: org.size, height: 'auto' }}
-            className="drop-shadow-lg"
-          />
-        </motion.div>
-      ))}
+      <FloatingOrganisms
+        challengeMode={challengeMode}
+        isTransitioning={isTransitioning}
+        hoveredOrganism={hoveredOrganism}
+        onHover={setHoveredOrganism}
+        onOrganismClick={() => {
+          setShowContent(false)
+          setTimeout(() => {
+            setChallengeMode(true)
+            setShowContent(true)
+          }, 1500)
+        }}
+      />
 
       {/* Info Box on hover */}
       <AnimatePresence>
@@ -205,7 +182,7 @@ export const Scene3_Underwater = () => {
 
       {/* Challenge Prompt */}
       <AnimatePresence>
-        {challengeMode && !isTransitioning && (
+        {challengeMode && !isTransitioning && showContent && (
           <ChallengePrompt  
             title="Diego's Challenge"
             question="Why do you think life started in water and not on land?"
@@ -242,6 +219,85 @@ export const Scene3_Underwater = () => {
               />
             ))}
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Fish */}
+      <FloatingFish 
+        isVisible={isTransitioning} 
+        highlightedFishIndex={transitionDialoguePhase >= 2 && !showFishChallenge && !isFinalTransition ? 2 : null}
+        onFishClick={() => setShowFishChallenge(true)}
+        exitLeft={isFinalTransition}
+      />
+
+      {/* Transition Dialogue Phase 1 */}
+      <AnimatePresence>
+        {isTransitioning && transitionDialoguePhase === 0 && (
+          <NarrationDialogue 
+            text="As time passed, Diego noticed changes beneath the ocean. Some organisms developed fins for swimming, gills for breathing underwater, and hard shells for protection."
+            delay={2500}
+            speed={25}
+            onComplete={() => {
+              setTimeout(() => setTransitionDialoguePhase(1), 2000)
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Transition Dialogue Phase 2 */}
+      <AnimatePresence>
+        {isTransitioning && transitionDialoguePhase === 1 && (
+          <NarrationDialogue 
+            text="These traits were not random—they helped organisms survive better than others. Over generations, organisms with helpful traits lived longer and reproduced more. This process is known as natural selection."
+            delay={500}
+            speed={25}
+            onComplete={() => {
+              setTimeout(() => setTransitionDialoguePhase(2), 2000)
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Fish Challenge */}
+      <AnimatePresence>
+        {showFishChallenge && (
+          <ChallengePrompt 
+            title="Question"
+            question="Why do you think fins are important for swimming?"
+            onNext={() => {
+              setShowFishChallenge(false)
+              setIsFinalTransition(true)
+              setTimeout(() => setShowFinalNarration(true), 2000)
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Diego Reaction */}
+      <AnimatePresence>
+        {showFishChallenge && (
+          <SpeechBubble 
+            text="IT'S BEAUTIFUL!!"
+            position={{ top: '30vh', left: '50vw' }}
+            delay={300}
+            speed={40}
+            tailPosition="bottom-left"
+            variant="shout"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Final Narration */}
+      <AnimatePresence>
+        {showFinalNarration && (
+          <NarrationDialogue  
+            text="Evolution happens slowly through many generations. Small changes that improve survival become common in a population over time."
+            delay={500}
+            speed={25}
+            onComplete={() => {
+              setTimeout(() => onNext(), 3500)
+            }}
+          />
         )}
       </AnimatePresence>
 

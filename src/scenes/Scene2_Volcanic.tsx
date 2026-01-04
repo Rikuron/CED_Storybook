@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Hero } from "../components/Hero"
-import { TypeWriter } from "../components/TypeWriter"
+import { NarrationDialogue } from "../components/NarrationDialogue"
 import { SpeechBubble } from "../components/SpeechBubble"
 
 interface Scene2Props {
@@ -153,27 +153,12 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
       {/* First Narration Dialogue */}
       <AnimatePresence>
         {showDialogue && dialoguePhase === 0 && (
-          <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <p 
-              className="text-lg md:text-xl lg:text-2xl text-center"
-              style={{ WebkitTextStroke: '1px #000000' }}
-            >
-              <TypeWriter
-                text="Diego stepped onto a strange version of Earth—hot, rocky, and empty. There were no trees, animals, or people. The oceans were forming, filled with chemicals and energy from heat and lightning."
-                delay={500}
-                speed={25}
-                className="text-white font-canva-sans-bold"
-                onComplete={() => {
-                  setTimeout(() => setDialoguePhase(1), 2500)
-                }}
-              />
-            </p>
-          </motion.div>
+          <NarrationDialogue 
+            text="Diego stepped onto a strange version of Earth—hot, rocky, and empty. There were no trees, animals, or people. The oceans were forming, filled with chemicals and energy from heat and lightning."
+            delay={500}
+            speed={25}
+            onComplete={() => setTimeout(() => setDialoguePhase(1), 2500)}
+          />
         )}
       </AnimatePresence>
 
@@ -194,28 +179,12 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
       {/* Second Narration Dialogue */}
       <AnimatePresence>
         {dialoguePhase === 1 && (
-          <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <p 
-              className="text-lg md:text-xl lg:text-2xl text-center"
-              style={{ WebkitTextStroke: '1px #000000' }}
-            >
-              <TypeWriter
-                text="Deep beneath the water, tiny living organisms appeared. These single-celled organisms were the first life forms, capable of reproduction and basic survival."
-                delay={500}
-                speed={25}
-                className="text-white font-canva-sans-bold"
-                onComplete={() => {
-                  setTimeout(() => setDialoguePhase(2), 2500)
-                }}
-              />
-            </p>
-          </motion.div>
+          <NarrationDialogue 
+            text="Deep beneath the water, tiny living organisms appeared. These single-celled organisms were the first life forms, capable of reproduction and basic survival."
+            delay={500}
+            speed={25}
+            onComplete={() => setTimeout(() => setDialoguePhase(2), 2500)}
+          />
         )}
       </AnimatePresence>
 
@@ -236,28 +205,12 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
       {/* Third Narration Dialogue */}
       <AnimatePresence>
         {dialoguePhase === 2 && (
-          <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-5xl"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <p 
-              className="text-lg md:text-xl lg:text-2xl text-center"
-              style={{ WebkitTextStroke: '1px #000000' }}
-            >
-              <TypeWriter
-                text="Though simple, they carried the building blocks of all future life."
-                delay={500}
-                speed={25}
-                className="text-white font-canva-sans-bold"
-                onComplete={() => {
-                  setTimeout(() => setDialoguePhase(3), 1000)
-                }}
-              />
-            </p>
-          </motion.div>
+          <NarrationDialogue 
+            text="Though simple, they carried the building blocks of all future life."
+            delay={500}
+            speed={25}
+            onComplete={() => setTimeout(() => setDialoguePhase(3), 2500)}
+          />
         )}
       </AnimatePresence>
 

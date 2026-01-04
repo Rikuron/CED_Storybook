@@ -14,13 +14,11 @@ export const SceneManager = () => {
   const renderScene = () => {
     switch (currentScene) {
       case 1:
-        return <Scene1_Title key="scene3" onNext={nextScene} />
+        return <Scene1_Title key="scene1" onNext={nextScene} />
       case 2:
         return <Scene2_Volcanic key="scene2" onNext={nextScene} />
       case 3:
-        return <Scene3_Underwater key="scene1" 
-          // onNext={nextScene} 
-        />
+        return <Scene3_Underwater key="scene3" onNext={nextScene} />
       default:
         return <Scene1_Title key="scene1" onNext={nextScene} />
     }
