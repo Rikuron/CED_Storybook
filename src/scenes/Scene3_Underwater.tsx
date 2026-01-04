@@ -140,7 +140,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       {unicellInfo.map((org) => (
         <motion.div
           key={org.id}
-          className={`absolute cursor-pointer ${hoveredOrganism === org.id ? 'z-50' : 'z-20'}`}
+          className={`absolute ${challengeMode ? '' : 'cursor-pointer'} ${hoveredOrganism === org.id ? 'z-50' : 'z-20'}`}
           style={{ left: org.position.x, top: org.position.y }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
