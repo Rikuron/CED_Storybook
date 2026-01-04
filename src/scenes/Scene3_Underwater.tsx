@@ -5,6 +5,7 @@ import { SpeechBubble } from "../components/SpeechBubble"
 import { FunfactPopup } from "../components/FunfactPopup"
 import { unicellInfo } from "../data/unicellInfo"
 import { OrganismInfoBox } from "../components/OrganismInfoBox"
+import { ChallengePrompt } from "../components/ChallengePrompt"
 
 interface Scene3Props {
   onNext: () => void
@@ -14,6 +15,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
   const [diegoEntered, setDiegoEntered] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const [hoveredOrganism, setHoveredOrganism] = useState<number | null>(null)
+  const [challengeMode, setChallengeMode] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setDiegoEntered(true), 500)
@@ -98,7 +100,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Speech Bubble */}
       <AnimatePresence>
-        {showContent && (
+        {showContent && !challengeMode && (
           <SpeechBubble
             text="Oh, it's not that bad"
             position={{ top: '26vh', left: '26vw' }}
@@ -110,9 +112,23 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
         )}
       </AnimatePresence>
 
+      {/* Challenge Mode Speech Bubble */}
+      <AnimatePresence>
+        {challengeMode && (
+          <SpeechBubble 
+            text="WHAT THE!"
+            position={{ top: '26vh', left: '26vw' }}
+            delay={300}
+            speed={40}
+            tailPosition="bottom-left"
+            variant="shout"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Fun Fact Popup */}
       <AnimatePresence>
-        {showContent && (
+        {showContent && !challengeMode && (
           <FunfactPopup 
             text="The earliest life forms were single-celled organisms."
             delay={1}
@@ -129,7 +145,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
           initial={{ opacity: 0, scale: 0 }}
           animate={{
             opacity: 1,
-            scale: 2,
+            scale: challengeMode ? 5 : 2,
             y: [0, -10, 0]
           }}
           transition={{
@@ -138,11 +154,16 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
               repeat: Infinity,
               ease: "easeInOut"
             },
-            opacity: { delay: 2 + org.id * 0.3, duration: 0.5 }
+            opacity: {
+              delay: 2 + org.id * 0.3,
+              duration: 0.5
+            },
+            scale: { duration: 0.5 }
           }}
-          onHoverStart={() => setHoveredOrganism(org.id)}
-          onHoverEnd={() => setHoveredOrganism(null)}
-          whileHover={{ scale: 2.5 }}
+          onHoverStart={() => !challengeMode && setHoveredOrganism(org.id)}
+          onHoverEnd={() => !challengeMode && setHoveredOrganism(null)}
+          whileHover={challengeMode ? {} : { scale: 2.5 }}
+          onClick={() => setChallengeMode(true)}
         >
           <img 
             src={org.image} 
@@ -155,10 +176,21 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Info Box on hover */}
       <AnimatePresence>
-        {hoveredOrganism && (
+        {hoveredOrganism && !challengeMode && (
           <OrganismInfoBox 
             organism={unicellInfo.find(org => org.id === hoveredOrganism)!} 
             position={unicellInfo.find(org => org.id === hoveredOrganism)!.position}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Challenge Prompt */}
+      <AnimatePresence>
+        {challengeMode && (
+          <ChallengePrompt  
+            title="Diego's Challenge"
+            question="Why do you think life started in water and not on land?"
+            onNext={onNext}
           />
         )}
       </AnimatePresence>

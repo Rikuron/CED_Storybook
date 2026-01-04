@@ -39,7 +39,7 @@ export const OrganismInfoBox = ({ organism, position }: OrganismInfoBoxProps) =>
         <p className="text-gray-400 text-xs mb-4">
           {formatOrigin(organism.origin)}
         </p>
-        <ul className="space-y-2">
+        <ul className="space-y-4">
           {organism.features.map((feature, idx) => (
             <li key={idx} className="text-white text-sm font-canva-sans-regular flex items-start gap-2">
               <span className="text-cyan-400 mt-1">•</span>
