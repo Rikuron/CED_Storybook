@@ -16,7 +16,7 @@ export const FunfactPopup = ({ text, delay = 0 }: FunfactPopupProps) => {
         delay, 
         type: "spring",
         stiffness: 400,
-        damping: 15
+        damping: 15,
       }}
     >
       <div

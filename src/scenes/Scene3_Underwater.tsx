@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, m } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Hero } from "../components/Hero"
 import { SpeechBubble } from "../components/SpeechBubble"
@@ -16,6 +16,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
   const [showContent, setShowContent] = useState(false)
   const [hoveredOrganism, setHoveredOrganism] = useState<number | null>(null)
   const [challengeMode, setChallengeMode] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setDiegoEntered(true), 500)
@@ -26,6 +27,13 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       clearTimeout(contentTimer)
     }
   }, [])
+
+  const handleNextPart = () => {
+    setIsTransitioning(true)
+    // setTimeout(() => {
+    //   onNext()
+    // }, 2500)
+  }
 
   return (
     <motion.div
@@ -84,14 +92,21 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
             x="20vw"
             y="-20vh"
             scale={1.75}
-            animate={{
+            animate={isTransitioning ? {
+              x: "40vw",
+              y: "40vh",
+              scale: 1.2,
+              rotate: 35,
+              opacity: 1
+            } : {
               x: "15vw",
               y: "35vh",
               scale: 1.5,
+              rotate: 0,
               opacity: 1
             }}
             transition={{
-              duration: 1.5,
+              duration: isTransitioning ? 0.5 : 1.5,
               ease: "easeOut"
             }}
           />
@@ -114,7 +129,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Challenge Mode Speech Bubble */}
       <AnimatePresence>
-        {challengeMode && (
+        {challengeMode && !isTransitioning && (
           <SpeechBubble 
             text="WHAT THE!"
             position={{ top: '26vh', left: '26vw' }}
@@ -143,7 +158,11 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
           className={`absolute ${challengeMode ? '' : 'cursor-pointer'} ${hoveredOrganism === org.id ? 'z-50' : 'z-20'}`}
           style={{ left: org.position.x, top: org.position.y }}
           initial={{ opacity: 0, scale: 0 }}
-          animate={{
+          animate={isTransitioning ? {
+            opacity: 0,
+            x: '-100vw',
+            scale: challengeMode ? 5 : 2
+          } : {
             opacity: 1,
             scale: challengeMode ? 5 : 2,
             y: [0, -10, 0]
@@ -186,12 +205,43 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Challenge Prompt */}
       <AnimatePresence>
-        {challengeMode && (
+        {challengeMode && !isTransitioning && (
           <ChallengePrompt  
             title="Diego's Challenge"
             question="Why do you think life started in water and not on land?"
-            onNext={onNext}
+            onNext={handleNextPart}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Speed Beams Effect */}
+      <AnimatePresence>
+        {isTransitioning && (
+          <>
+            {[...Array(12)].map((_, i) => (
+              <motion.div 
+                key={`speedbeam-${i}`}
+                className="absolute bg-linear-to-l from-white/40 to-transparent"
+                style={{
+                  height: '2px',
+                  width: '200px',
+                  top: `${10 + i * 7}%`,
+                  right: '-200px'
+                }}
+                initial={{ x: 0, opacity: 0 }}
+                animate={{ 
+                  x: [0, -window.innerWidth - 400],  
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.1,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+            ))}
+          </>
         )}
       </AnimatePresence>
 
