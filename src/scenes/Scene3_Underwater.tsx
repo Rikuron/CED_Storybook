@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, m } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Hero } from "../components/Hero"
 import { SpeechBubble } from "../components/SpeechBubble"
