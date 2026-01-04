@@ -7,11 +7,11 @@ import { unicellInfo } from "../data/unicellInfo"
 import { OrganismInfoBox } from "../components/OrganismInfoBox"
 import { ChallengePrompt } from "../components/ChallengePrompt"
 
-interface Scene3Props {
-  onNext: () => void
-}
+// interface Scene3Props {
+//   onNext: () => void
+// }
 
-export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
+export const Scene3_Underwater = () => {
   const [diegoEntered, setDiegoEntered] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const [hoveredOrganism, setHoveredOrganism] = useState<number | null>(null)
