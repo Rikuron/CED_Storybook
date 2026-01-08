@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 import { NarrationDialogue } from "../components/NarrationDialogue"
-import { TypeWriter } from "../components/TypeWriter"
+import { TitleSceneContent } from "../components/TitleSceneContent"
+import { InteractiveHint } from "../components/InteractiveHint"
 import { Hero } from "../components/Hero"
+import { useResponsive } from "../hooks/useResponsive"
 
 interface Scene1Props {
   onNext: () => void
@@ -14,6 +16,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
   const [showDiego, setShowDiego] = useState(false)
   const [dialogueComplete, setDialogueComplete] = useState(false)
   const [enteringEarth, setEnteringEarth] = useState(false)
+  const { isMobile, isTablet, isTV } = useResponsive()
 
   const handleEarthClick = () => {
     setIsClicked(true)
@@ -52,8 +55,8 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
       <motion.div 
         className={`absolute ${!isClicked ? 'cursor-pointer' : (dialogueComplete ? 'cursor-pointer' : '')} z-20`}
         initial={{
-          right: '-192px',
-          bottom: '-448px',
+          right: isMobile ? '-10vw' : isTablet ? '-7vw' : isTV ? '-10vw' : '-14vw',
+          bottom: isMobile ? '-25vh' : isTablet ? '-65vh' : isTV ? '-65vh' : '-60vh',
           x: 0,
           y: 0
         }}
@@ -62,17 +65,17 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
           bottom: '50%',
           x: '50%',
           y: '50%',
-          scale: 4,
+          scale: isMobile ? 6 : isTablet ? 4 : isTV ? 4 : 4,
           opacity: 0
         } : isClicked ? {
           right: '50%',
           bottom: '50%',
           x: '50%',
           y: '50%',
-          scale: 0.5
+          scale: isMobile ? 0.35 : 0.5
         } : {
-          right: '-192px',
-          bottom: '-448px',
+          right: isMobile ? '-10vw' : isTablet ? '-7vw' : isTV ? '-10vw' : '-14vw',
+          bottom: isMobile ? '-25vh' : isTablet ? '-65vh' : isTV ? '-65vh' : '-60vh',
           x: 0,
           y: 0
         }}
@@ -87,8 +90,12 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
         <motion.img 
           src="/Initial Assets/alt_earth.png" 
           alt="Earth" 
-          className="w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[850px] lg:h-[850px] object-contain will-change-transform"
-          style={{ transformOrigin: 'center center' }}
+          className=" object-contain will-change-transform"
+          style={{ 
+            width: '120vh',  
+            height: '120vh',
+            transformOrigin: 'center center' 
+          }}
           animate={{ 
             rotate: 360,
             filter: isHovered ? 'drop-shadow(0 0 100px rgba(255, 255, 255, 0.8))' : 'drop-shadow(0 0 80px rgba(59, 130, 246, 0.6))'
@@ -106,126 +113,33 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
         />
 
         {/* Interactive Hint Text */}
-        <AnimatePresence>
-          {!isClicked && (
-            <motion.div
-              className="absolute pointer-events-none"
-              style={{
-                top: '27.5%',
-                left: '45%',
-                transform: 'translate(-50%, -50%)'
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ 
-                opacity: 0,
-                transition: { duration: 0.3, delay: 0 }
-              }}
-              transition={{ 
-                delay: 5, duration: 0.5 
-              }}
-            >
-              <motion.span
-                className="text-yellow-300 text-2xl md:text-5xl font-canva-sans-bold text-center px-4"
-                style={{ 
-                  WebkitTextStroke: '2px #000000',
-                }}
-                animate={{
-                  opacity: [0.7, 1, 0.7],
-                  scale: [1, 1.05, 1]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                Click to Begin
-              </motion.span>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <InteractiveHint 
+          text="Click to Begin"
+          isVisible={!isClicked}
+        />
       </motion.div>
 
 
       {/* Content */}
-      <AnimatePresence>
-        {!isClicked && (
-          <motion.div
-            className="relative z-10 flex flex-col items-start justify-start h-full"
-            style={{ padding: '5rem 4rem' }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col gap-y-1.5 text-left"
-            >
-              {/* Main Title */}
-              <h1 className="text-2xl md:text-4xl mb-2">
-                <TypeWriter 
-                  text="Evolution Chronicles:"
-                  delay={500}
-                  speed={50}
-                  className="text-white font-helvetica-regular drop-shadow-2xl"
-                />
-              </h1>
+      <TitleSceneContent isVisible={!isClicked} />
 
-              {/* Subtitle */}
-              <h2 className="text-3xl md:text-6xl font-helvetica-bold mt-4">
-                <TypeWriter 
-                  text="A "
-                  delay={2500}
-                  speed={60}
-                  className="text-white drop-shadow-2xl"
-                />
-                <TypeWriter 
-                  text="JOURNEY"
-                  delay={2620}
-                  speed={60}
-                  className="text-pink-400 drop-shadow-2xl"
-                />
-                <TypeWriter 
-                  text=" THROUGH TIME"
-                  delay={3200}
-                  speed={60}
-                  className="text-white drop-shadow-2xl"
-                />
-              </h2>
 
-              {/* Tagline */}
-              <p className="text-xl md:text-2xl mt-8">
-                <TypeWriter 
-                  text="A Story of Life's Transformation Through Time"
-                  delay={4500}
-                  speed={40}
-                  className="text-white font-nexa tracking-wider"
-                />
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      
       {/* Hero Character - Diego */}
       <AnimatePresence>
         {showDiego && (
           <Hero 
             x="-10vw"
             y="-10vh"
-            scale={1.5}
+            scale={isMobile ? 0.5 : isTablet ? 0.8 : isTV ? 4.5 : 1.25}
             animate={enteringEarth ? {
               x: "45vw",
               y: "45vh",
-              scale: 3,
+              scale: isMobile ? 2 : isTV ? 4 : 3,
               opacity: 1
             } : {
-              x: "15vw",
-              y: "40vh",
-              scale: 1.5,
+              x: isMobile ? "5vw" : "15vw",
+              y: isMobile ? "45vh" : "40vh",
+              scale: isMobile ? 0.5 : isTablet ? 0.8 : isTV ? 4.5 : 1.25,
               opacity: 1
             }}
             transition={{

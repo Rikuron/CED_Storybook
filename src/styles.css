@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   @apply m-0 overflow-hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -71,3 +65,12 @@ code {
   --font-canva-sans-regular: canva-sans-regular, "sans-serif";
   --font-canva-sans-bold: canva-sans-bold, "sans-serif";
 }
+
+
+/* Font Size Utility Classes */
+.text-fluid-sm { font-size: clamp(0.875rem, 2vw, 1.25rem); }
+.text-fluid-base { font-size: clamp(1rem, 2.5vw, 1.5rem); }
+.text-fluid-lg { font-size: clamp(1.25rem, 3vw, 2rem); }
+.text-fluid-xl { font-size: clamp(1.5rem, 4vw, 3rem); }
+.text-fluid-2xl { font-size: clamp(2rem, 5vw, 4rem); }
+.text-fluid-3xl { font-size: clamp(2.5rem, 6vw, 5rem); }
