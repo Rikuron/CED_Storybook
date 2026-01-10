@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Hero } from "../components/Hero"
+import { PartIntroduction } from "../components/PartIntroduction"
 import { SpeechBubble } from "../components/SpeechBubble"
 import { FunfactPopup } from "../components/FunfactPopup"
 import { unicellInfo } from "../data/unicellInfo"
@@ -16,11 +17,14 @@ interface Scene3Props {
 }
 
 export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
+  const [showPart1Intro, setShowPart1Intro] = useState(true)
   const [diegoEntered, setDiegoEntered] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const [hoveredOrganism, setHoveredOrganism] = useState<number | null>(null)
   const [challengeMode, setChallengeMode] = useState(false)
+  const [showPart2Intro, setShowPart2Intro] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [showFishPhase, setShowFishPhase] = useState(false)
   const [transitionDialoguePhase, setTransitionDialoguePhase] = useState(0)
   const [showFishChallenge, setShowFishChallenge] = useState(false)
   const [isFinalTransition, setIsFinalTransition] = useState(false)
@@ -28,10 +32,13 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
   const { isMobile, isTablet, isTV } = useResponsive()
 
   useEffect(() => {
-    const timer = setTimeout(() => setDiegoEntered(true), 500)
-    const contentTimer = setTimeout(() => setShowContent(true), 2000)
+    const introTimer = setTimeout(() => setShowPart1Intro(false), 4000)
+
+    const timer = setTimeout(() => setDiegoEntered(true), 4500)
+    const contentTimer = setTimeout(() => setShowContent(true), 6500)
 
     return () => {
+      clearTimeout(introTimer)
       clearTimeout(timer)
       clearTimeout(contentTimer)
     }
@@ -39,6 +46,13 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
   const handleNextPart = () => {
     setIsTransitioning(true)
+
+    setTimeout(() => setShowPart2Intro(true), 1500)
+    
+    setTimeout(() =>{ 
+      setShowPart2Intro(false)
+      setShowFishPhase(true)
+    }, 5500)
   }
 
   return (
@@ -113,6 +127,14 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
           />
         )
       })}
+
+      {/* Part 1 Introduction */}
+      <PartIntroduction
+        title="THE BEGINNING OF LIFE"
+        highlightWord="BEGINNING"
+        isVisible={showPart1Intro}
+        onComplete={() => setShowPart1Intro(false)}
+      />
 
       {/* Hero - Diego */}
       <AnimatePresence>
@@ -216,6 +238,13 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
         )}
       </AnimatePresence>
 
+      {/* Part 2 Introduction */}
+      <PartIntroduction
+        title="LIFE IN THE WATER"
+        highlightWord="LIFE"
+        isVisible={showPart2Intro}
+      />
+
       {/* Speed Beams Effect */}
       <AnimatePresence>
         {isTransitioning && (
@@ -254,7 +283,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Floating Fish */}
       <FloatingFish 
-        isVisible={isTransitioning} 
+        isVisible={showFishPhase} 
         highlightedFishIndex={transitionDialoguePhase >= 2 && !showFishChallenge && !isFinalTransition ? 2 : null}
         onFishClick={() => setShowFishChallenge(true)}
         exitLeft={isFinalTransition}
@@ -262,7 +291,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
 
       {/* Transition Dialogue Phase 1 */}
       <AnimatePresence>
-        {isTransitioning && transitionDialoguePhase === 0 && (
+        {showFishPhase && transitionDialoguePhase === 0 && (
           <NarrationDialogue 
             text="As time passed, Diego noticed changes beneath the ocean. Some organisms developed fins for swimming, gills for breathing underwater, and hard shells for protection."
             delay={2500}
