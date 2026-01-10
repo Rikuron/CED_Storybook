@@ -24,7 +24,7 @@ export const NarrationDialogue = ({
 
   return (
     <motion.div
-      className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-40 w-[90%] ${className}`}
+      className={`absolute bottom-1/12 left-1/2 -translate-x-1/2 z-40 w-[90%] ${className}`}
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 100, opacity: 0 }}

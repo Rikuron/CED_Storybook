@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { TypeWriter } from "./TypeWriter"
+import { useResponsive } from "../hooks/useResponsive"
 
 interface SpeechBubbleProps {
   text: string
@@ -27,6 +28,7 @@ export const SpeechBubble = ({
   className = "",
   variant = 'normal'
 }: SpeechBubbleProps) => {
+  const { isMobile, isTablet, isTV } = useResponsive()
   
   const variantStyles = {
     normal: {
@@ -48,6 +50,11 @@ export const SpeechBubble = ({
 
   const currentStyle = variantStyles[variant]
 
+  const padding = isMobile ? '0.3rem 0.5rem' : isTablet ? '0.4rem 0.6rem' : isTV ? '3rem 5rem' : '0.5rem 0.75rem'
+  const fontSize = isMobile ? 'text-xs' : isTablet ? 'text-sm' : isTV ? 'text-[5rem]' : 'text-lg'
+  const borderWidth = isMobile ? '2px' : isTablet ? '2.5px' : isTV ? '6px' : '3px'
+  const tailSize = isMobile ? { width: 25, height: 20 } : isTablet ? { width: 30, height: 22 } : isTV ? { width: 80, height: 60 } : { width: 40, height: 30 }
+
   return (
     <motion.div
       className={`absolute z-30 ${className}`}
@@ -67,16 +74,16 @@ export const SpeechBubble = ({
       <div className="relative">
         {/* Main bubble */}
         <motion.div 
-          className={`relative rounded-2xl ${currentStyle.text}`}
+          className={`relative rounded-4xl ${currentStyle.text}`}
           whileHover={{ scale: 1.02 }}
           style={{
             backgroundColor: currentStyle.bg,
-            border: `3px solid ${currentStyle.border}`,
+            border: `${borderWidth} solid ${currentStyle.border}`,
             boxShadow: `4px 4px 0px 0px rgba(0,0,0,0.3)`,
-            padding: '0.5rem 0.75rem'
+            padding: padding
           }}
         >
-          <p className={`text-sm md:text-lg text-center leading-tight`}>
+          <p className={`${fontSize} text-center leading-tight`}>
             <TypeWriter 
               text={text}
               delay={delay}
@@ -96,8 +103,8 @@ export const SpeechBubble = ({
               tailPosition === 'top-left' ? 'top-[-25px] left-[10%] scale-y-[-1]' :
               'top-[-25px] right-[10%] scale-[-1]'
             }`}
-            width="40"
-            height="30"
+            width={tailSize.width}
+            height={tailSize.height}
             viewBox="0 0 40 30"
           >
             {/* Shadow/border */}

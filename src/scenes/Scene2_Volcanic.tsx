@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Hero } from "../components/Hero"
 import { NarrationDialogue } from "../components/NarrationDialogue"
 import { SpeechBubble } from "../components/SpeechBubble"
+import { useResponsive } from "../hooks/useResponsive"
 
 interface Scene2Props {
   onNext: () => void
@@ -13,6 +14,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
   const [showDialogue, setShowDialogue] = useState(false)
   const [dialoguePhase, setDialoguePhase] = useState(0)
   const [isDiving, setIsDiving] = useState(false)
+  const { isMobile, isTablet, isTV } = useResponsive()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -58,56 +60,70 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
       />
 
       {/* Falling Ash - from top to middle */}
-      {[...Array(25)].map((_, i) => (
-        <motion.div 
-          key={`ash-${i}`}
-          className="absolute rounded-full"
-          style={{
-            width: `${2 + Math.random() * 4}px`,
-            height: `${2 + Math.random() * 4}px`,
-            background: `rgba(${150 + Math.random() * 100}, ${50 + Math.random() * 50}, 0, 0.7)`,
-            left: `${Math.random() * 100}%`,
-            top: '-5%',
-          }}
-          animate={{
-            y: [0, window.innerHeight * 0.5],
-            x: [0, (Math.random() - 0.5) * 50],
-            opacity: [0.8, 0.6, 0],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 3,
-            ease: "easeIn"
-          }}
-        />
-      ))}
+      {[...Array(isMobile ? 15 : isTablet ? 20 : isTV ? 40 : 25)].map((_, i) => {
+        const baseSize = isMobile ? 1.5 : isTablet ? 2 : isTV ? 12 : 3
+        const sizeVariation = isMobile ? 2 : isTablet ? 3 : isTV ? 12 : 4
+        const xDrift = isMobile ? 25 : isTablet ? 35 : isTV ? 100 : 50
+
+        
+
+        return (
+          <motion.div 
+            key={`ash-${i}`}
+            className="absolute rounded-full"
+            style={{
+              width: `${baseSize + Math.random() * sizeVariation}px`,
+              height: `${baseSize + Math.random() * sizeVariation}px`,
+              background: `rgba(${150 + Math.random() * 100}, ${50 + Math.random() * 50}, 0, 0.7)`,
+              left: `${Math.random() * 100}%`,
+              top: '-5%',
+            }}
+            animate={{
+              y: [0, window.innerHeight * 0.5],
+              x: [0, (Math.random() - 0.5) * xDrift],
+              opacity: [0.8, 0.6, 0],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+              ease: "easeIn"
+            }}
+          />
+        )
+      })}
 
       {/* Rising Bubbles - from bottom to middle */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={`bubble-${i}`}
-          className="absolute rounded-full bg-blue-300/50"
-          style={{
-            width: `${8 + Math.random() * 15}px`,
-            height: `${8 + Math.random() * 15}px`,
-            left: `${Math.random() * 100}%`,
-            bottom: '0%',
-          }}
-          animate={{
-            y: [0, -window.innerHeight * 0.5],
-            x: [0, (Math.random() - 0.5) * 30],
-            opacity: [0, 0.7, 0],
-            scale: [0.5, 1, 0.3]
-          }}
-          transition={{
-            duration: 2.5 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-            ease: "easeOut"
-          }}
-        />
-      ))}
+      {[...Array(isMobile ? 10 : isTablet ? 15 : isTV ? 30 : 20)].map((_, i) => {
+        const baseSize = isMobile ? 4 : isTablet ? 6 : isTV ? 18 : 8
+        const sizeVariation = isMobile ? 6 : isTablet ? 10 : isTV ? 30 : 15
+        const xDrift = isMobile ? 15 : isTablet ? 20 : isTV ? 60 : 30
+
+        return (
+          <motion.div
+            key={`bubble-${i}`}
+            className="absolute rounded-full bg-blue-300/50"
+            style={{
+              width: `${baseSize + Math.random() * sizeVariation}px`,
+              height: `${baseSize + Math.random() * sizeVariation}px`,
+              left: `${Math.random() * 100}%`,
+              bottom: '0%',
+            }}
+            animate={{
+              y: [0, -window.innerHeight * 0.5],
+              x: [0, (Math.random() - 0.5) * xDrift],
+              opacity: [0, 0.7, 0],
+              scale: [0.5, 1, 0.3]
+            }}
+            transition={{
+              duration: 2.5 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeOut"
+            }}
+          />
+        )
+      })}
 
       {/* Hero Character - Diego */}
       <AnimatePresence>
@@ -115,16 +131,16 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
           <Hero 
             x="25vw"
             y="-20vh"
-            scale={1.5}
+            scale={isMobile ? 0.5 : isTablet ? 0.8 : isTV ? 4.5 : 1.25}
             animate={isDiving ? {
               x: '43vw',
               y: '80vh',
               scale: 0.8,
               opacity: 0
             } : {
-              x: "15vw",
-              y: "17.5vh",
-              scale: 1.5,
+              x: isMobile ? "15vw" : isTablet ? "15vw" : isTV ? "17.5vw" : "15vw",
+              y: isMobile ? "17.5vh" : isTablet ? "17.5vh" : isTV ? "25vh" : "17.5vh",
+              scale: isMobile ? 0.5 : isTablet ? 0.8 : isTV ? 4.5 : 1.25,
               opacity: 1
             }}
             transition={{
@@ -221,7 +237,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
           <motion.div
             className="absolute z-40 cursor-pointer"
             style={{
-              left: '43.5%',
+              left: '47%',
               bottom: '20%',
               transform: 'translateX(-50%)'
             }}
@@ -248,7 +264,11 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
 
             {/* Orb */}
             <motion.div
-              className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-linear-to-br from-cyan-300/40 via-blue-400/40 to-blue-600/40 shadow-lg"
+              className="rounded-full bg-linear-to-br from-cyan-300/40 via-blue-400/40 to-blue-600/40 shadow-lg"
+              style={{
+                width: isMobile ? '3.5rem' : isTablet ? '5rem' : isTV ? '20rem' : '7rem',
+                height: isMobile ? '3.5rem' : isTablet ? '5rem' : isTV ? '20rem' : '7rem'
+              }}
               animate={{
                 boxShadow: [
                   '0 0 30px rgba(59, 130, 246, 0.6)',
@@ -266,7 +286,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
             
             {/* Click hint */}
             <motion.p
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-white text-sm font-canva-sans-bold whitespace-nowrap"
+              className={`absolute ${isTV ? '-bottom-24' : '-bottom-8'} left-1/2 -translate-x-1/2 text-white font-canva-sans-bold whitespace-nowrap ${isMobile ? 'text-xs' : isTablet ? 'text-sm' : isTV ? 'text-6xl' : 'text-base'}`}
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1.5, repeat: Infinity }}
               style={{ textShadow: '0 0 10px rgba(59, 130, 246, 0.8)' }}
