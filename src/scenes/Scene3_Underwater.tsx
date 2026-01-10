@@ -48,23 +48,41 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* Underwater Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('Initial Assets/sea.png')"}}
+      {/* Animated Underwater Background - CSS Gradient */}
+      <motion.div 
+        className="absolute inset-0"
+        animate={{
+          background: isTransitioning 
+            ? 'linear-gradient(180deg, #1e3a5f 0%, #0a1628 50%, #0d2137 100%)'  // Navy - Fish phase
+            : 'linear-gradient(180deg, #0a1628 0%, #050d15 50%, #000000 100%)'   // Deep Blue/Black - Bacteria phase
+        }}
+        transition={{ duration: 2, ease: "easeInOut" }}
       />
 
-      {/* Dark overlay for depth */}
-      <div  
-        className="absolute inset-0 bg-linear-to-b from-blue-900/30 via-transparent to-blue-950/50"
+      {/* Secondary overlay for depth effect */}
+      <motion.div  
+        className="absolute inset-0"
+        animate={{
+          background: isTransitioning
+            ? 'radial-gradient(ellipse at 50% 0%, rgba(30, 80, 130, 0.3) 0%, transparent 60%)'  // Lighter top glow for fish
+            : 'radial-gradient(ellipse at 50% 0%, rgba(10, 40, 80, 0.2) 0%, transparent 50%)'   // Darker ambiance for bacteria
+        }}
+        transition={{ duration: 2, ease: "easeInOut" }}
       />
 
       {/* Light rays from above */}
       <motion.div 
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(180deg, rgba(100,200,255,0.15) 0%, transparent 40%)' }}
-        animate={{ opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ 
+          background: isTransitioning
+            ? 'linear-gradient(180deg, rgba(100, 180, 255, 0.2) 0%, transparent 50%)'
+            : 'linear-gradient(180deg, rgba(50, 100, 150, 0.1) 0%, transparent 40%)',
+          opacity: [0.3, 0.5, 0.3] 
+        }}
+        transition={{ 
+          background: { duration: 2, ease: "easeInOut" },
+          opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+        }}
       />
 
       {/* Floating bubbles */}
