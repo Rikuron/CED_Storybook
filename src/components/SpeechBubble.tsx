@@ -50,10 +50,10 @@ export const SpeechBubble = ({
 
   const currentStyle = variantStyles[variant]
 
-  const padding = isMobile ? '0.3rem 0.5rem' : isTablet ? '0.4rem 0.6rem' : isTV ? '3rem 5rem' : '0.5rem 0.75rem'
-  const fontSize = isMobile ? 'text-xs' : isTablet ? 'text-sm' : isTV ? 'text-[5rem]' : 'text-lg'
+  const padding = isMobile ? '0.3rem 0.5rem' : isTablet ? '0.4rem 0.6rem' : isTV ? '2.5rem 4rem' : '0.5rem 0.75rem'
+  const fontSize = isMobile ? 'text-xs' : isTablet ? 'text-sm' : isTV ? 'text-[4.5rem]' : 'text-lg'
   const borderWidth = isMobile ? '2px' : isTablet ? '2.5px' : isTV ? '6px' : '3px'
-  const tailSize = isMobile ? { width: 25, height: 20 } : isTablet ? { width: 30, height: 22 } : isTV ? { width: 80, height: 60 } : { width: 40, height: 30 }
+  const tailSize = isMobile ? { width: 25, height: 20 } : isTablet ? { width: 30, height: 22 } : isTV ? { width: 125, height: 93.75 } : { width: 40, height: 30 }
 
   return (
     <motion.div
@@ -74,7 +74,7 @@ export const SpeechBubble = ({
       <div className="relative">
         {/* Main bubble */}
         <motion.div 
-          className={`relative rounded-4xl ${currentStyle.text}`}
+          className={`relative ${isTV ? 'rounded-[8rem]' : 'rounded-4xl'} ${currentStyle.text}`}
           whileHover={{ scale: 1.02 }}
           style={{
             backgroundColor: currentStyle.bg,
@@ -98,8 +98,8 @@ export const SpeechBubble = ({
         {variant !== 'thought' && (
           <svg
             className={`absolute ${
-              tailPosition === 'bottom-left' ? 'bottom-[-25px] left-[10%]' :
-              tailPosition === 'bottom-right' ? 'bottom-[-25px] right-[10%] scale-x-[-1]' :
+              tailPosition === 'bottom-left' ? `${isTablet ? '-bottom-[17px]' : isTV ? '-bottom-17' : '-bottom-[22.5px]'} left-[10%]` :
+              tailPosition === 'bottom-right' ? `${isTablet ? '-bottom-[17px]' : isTV ? '-bottom-17' : '-bottom-[22.5px]'} right-[10%] scale-x-[-1]` :
               tailPosition === 'top-left' ? 'top-[-25px] left-[10%] scale-y-[-1]' :
               'top-[-25px] right-[10%] scale-[-1]'
             }`}

@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
+import { useResponsive } from "../hooks/useResponsive"
 
 interface FloatingFishProps {
   isVisible: boolean
@@ -25,6 +26,13 @@ export const FloatingFish = ({
   onFishClick,
   exitLeft = false
 }: FloatingFishProps) => {
+  const { isMobile, isTablet, isTV } = useResponsive()
+
+  const baseFishSize = isMobile ? 40 : isTablet ? 55 : isTV ? 210 : 70
+  const fishSizeVariation = isMobile ? 10 : isTablet ? 15 : isTV ? 65 : 20
+  const questionMarkSize = isMobile ? '20px' : isTablet ? '25px' : isTV ? '150px' : '30px'
+  const glowBlur = isMobile ? '10px' : isTablet ? '15px' : isTV ? '75px' : '20px'
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -76,7 +84,7 @@ export const FloatingFish = ({
                   <motion.div  
                     className="absolute inset-0 rounded-full bg-yellow-400/30"
                     style={{
-                      filter: 'blur(20px)',
+                      filter: `blur(${glowBlur})`,
                       transform: 'scale(1.5)'
                     }}
                     animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -87,7 +95,7 @@ export const FloatingFish = ({
                 <img 
                   src={i % 2 === 0 ? "Initial Assets/fish_1.png" : "Initial Assets/fish_2.png"} 
                   alt="fish"
-                  style={{ width: `${70 + (i % 3) * 20}px` }}
+                  style={{ width: `${baseFishSize + (i % 3) * fishSizeVariation}px` }}
                 />
 
                 {/* Question Mark for highlighted fish */}
@@ -96,7 +104,7 @@ export const FloatingFish = ({
                     src="/Initial Assets/question_mark.png"
                     alt="?"
                     className="absolute -top-8 left-1/2 -translate-x-1/2"
-                    style={{ width: '30px' }}
+                    style={{ width: questionMarkSize }}
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 1, repeat: Infinity }}
                   />

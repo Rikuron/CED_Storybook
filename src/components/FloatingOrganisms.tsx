@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { unicellInfo } from "../data/unicellInfo"
+import { useResponsive } from "../hooks/useResponsive"
 
 interface FloatingOrganismsProps {
   challengeMode: boolean
@@ -16,6 +17,12 @@ export const FloatingOrganisms = ({
   onHover,
   onOrganismClick
 }: FloatingOrganismsProps) => {
+  const { isMobile, isTablet, isTV } = useResponsive()
+
+  const baseScale = isMobile ? 0.5 : isTablet ? 1.2 : isTV ? 6 : 2
+  const challengeScale = isMobile ? 2 : isTablet ? 3 : isTV ? 14 : 5
+  const hoverScale = isMobile ? 1.2 : isTablet ? 1.8 : isTV ? 8 : 2.5
+
   return (
     <>
       {unicellInfo.map((org) => (
@@ -27,10 +34,10 @@ export const FloatingOrganisms = ({
           animate={isTransitioning ? {
             opacity: 0,
             x: '-100vw',
-            scale: challengeMode ? 5 : 2
+            scale: challengeMode ? challengeScale : baseScale
           } : {
             opacity: 1,
-            scale: challengeMode ? 5 : 2,
+            scale: challengeMode ? challengeScale : baseScale,
             y: [0, -10, 0]
           }}
           transition={{
@@ -47,7 +54,7 @@ export const FloatingOrganisms = ({
           }}
           onHoverStart={() => !challengeMode && onHover(org.id)}
           onHoverEnd={() => !challengeMode && onHover(null)}
-          whileHover={challengeMode ? {} : { scale: 2.5 }}
+          whileHover={challengeMode ? {} : { scale: hoverScale }}
           onClick={onOrganismClick}
         >
           <img 

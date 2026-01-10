@@ -9,6 +9,7 @@ import { OrganismInfoBox } from "../components/OrganismInfoBox"
 import { FloatingFish } from "../components/FloatingFish"
 import { ChallengePrompt } from "../components/ChallengePrompt"
 import { NarrationDialogue } from "../components/NarrationDialogue"
+import { useResponsive } from "../hooks/useResponsive"
 
 interface Scene3Props {
   onNext: () => void
@@ -24,6 +25,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
   const [showFishChallenge, setShowFishChallenge] = useState(false)
   const [isFinalTransition, setIsFinalTransition] = useState(false)
   const [showFinalNarration, setShowFinalNarration] = useState(false)
+  const { isMobile, isTablet, isTV } = useResponsive()
 
   useEffect(() => {
     const timer = setTimeout(() => setDiegoEntered(true), 500)
@@ -66,28 +68,33 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       />
 
       {/* Floating bubbles */}
-      {[...Array(15)].map((_, i) => (
-        <motion.div 
-          key={`bubble-${i}`}
-          className="absolute rounded-full bg-blue-200/30"
-          style={{ 
-            width: `${5 + Math.random() * 10}px`,
-            height: `${5 + Math.random() * 10}px`,
-            left: `${Math.random() * 100}%`,
-            bottom: '0%'
-          }}
-          animate={{
-            y: [0, - window.innerHeight],
-            opacity: [0, 0.6, 0]
-          }}
-          transition={{
-            duration: 4 + Math.random() * 3,
-            repeat: Infinity,
-            delay: Math.random() * 3,
-            ease: "easeOut"
-          }}
-        />
-      ))}
+      {[...Array(isMobile ? 8 : isTablet ? 12 : isTV ? 30 : 15)].map((_, i) => {
+        const baseSize = isMobile ? 4 : isTablet ? 6 : isTV ? 18 : 8
+        const sizeVariation = isMobile ? 6 : isTablet ? 10 : isTV ? 30 : 15
+
+        return (
+          <motion.div 
+            key={`bubble-${i}`}
+            className="absolute rounded-full bg-blue-200/30"
+            style={{ 
+              width: `${baseSize + Math.random() * sizeVariation}px`,
+              height: `${baseSize + Math.random() * sizeVariation}px`,
+              left: `${Math.random() * 100}%`,
+              bottom: '0%'
+            }}
+            animate={{
+              y: [0, - window.innerHeight],
+              opacity: [0, 0.6, 0]
+            }}
+            transition={{
+              duration: 4 + Math.random() * 3,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+              ease: "easeOut"
+            }}
+          />
+        )
+      })}
 
       {/* Hero - Diego */}
       <AnimatePresence>
@@ -95,17 +102,17 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
           <Hero 
             x="20vw"
             y="-20vh"
-            scale={1.75}
+            scale={isMobile ? 0.6 : isTablet ? 1.0 : isTV ? 5.0 : 1.75}
             animate={isTransitioning ? {
-              x: "40vw",
-              y: "40vh",
-              scale: 1.2,
+              x: isMobile ? "35vw" : isTablet ? "38vw" : isTV ? "40vw" : "40vw",
+              y: isMobile ? "45vh" : isTablet ? "42vh" : isTV ? "40vh" : "40vh",
+              scale: isMobile ? 0.5 : isTablet ? 0.8 : isTV ? 3.5 : 1.2,
               rotate: 35,
               opacity: 1
             } : {
-              x: "15vw",
-              y: "35vh",
-              scale: 1.5,
+              x: isMobile ? "10vw" : isTablet ? "12vw" : isTV ? "19vw" : "15vw",
+              y: isMobile ? "40vh" : isTablet ? "38vh" : isTV ? "45vh" : "35vh",
+              scale: isMobile ? 0.6 : isTablet ? 1.0 : isTV ? 5.0 : 1.5,
               rotate: 0,
               opacity: 1
             }}
@@ -195,29 +202,34 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       <AnimatePresence>
         {isTransitioning && (
           <>
-            {[...Array(12)].map((_, i) => (
-              <motion.div 
-                key={`speedbeam-${i}`}
-                className="absolute bg-linear-to-l from-white/40 to-transparent"
-                style={{
-                  height: '2px',
-                  width: '200px',
-                  top: `${10 + i * 7}%`,
-                  right: '-200px'
-                }}
-                initial={{ x: 0, opacity: 0 }}
-                animate={{ 
-                  x: [0, -window.innerWidth - 400],  
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 0.8,
-                  delay: i * 0.1,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-            ))}
+            {[...Array(isMobile ? 8 : isTablet ? 10 : isTV ? 20 : 12)].map((_, i) => {
+              const beamHeight = isMobile ? '1px' : isTablet ? '1.5px' : isTV ? '4px' : '2px'
+              const beamWidth = isMobile ? '100px' : isTablet ? '150px' : isTV ? '400px' : '200px'
+              
+              return (
+                <motion.div 
+                  key={`speedbeam-${i}`}
+                  className="absolute bg-linear-to-l from-white/40 to-transparent"
+                  style={{
+                    height: beamHeight,
+                    width: beamWidth,
+                    top: `${10 + i * 7}%`,
+                    right: `-${parseInt(beamWidth)}px`
+                  }}
+                  initial={{ x: 0, opacity: 0 }}
+                  animate={{ 
+                    x: [0, -window.innerWidth - 400],  
+                    opacity: [0, 1, 1, 0]
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                />
+              )
+            })}
           </>
         )}
       </AnimatePresence>
