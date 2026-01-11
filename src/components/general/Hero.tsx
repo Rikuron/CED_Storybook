@@ -7,6 +7,7 @@ interface HeroProps {
   animate?: any
   transition?: any
   shake?: boolean
+  initial?: any
 }
 
 export const Hero =({
@@ -15,7 +16,8 @@ export const Hero =({
   scale = 1,
   animate,
   transition,
-  shake = false
+  shake = false,
+  initial
 }: HeroProps) => {
   
   const defaultAnimate = {
@@ -43,11 +45,18 @@ export const Hero =({
         duration: 1.5
       }
 
+  const defaultInitial = {
+    x: "-20%",
+    y,
+    scale: 0.8,
+    opacity: 0
+  }
+
   return (
     <motion.div
       className="absolute pointer-events-none z-20"
       style={{ left: 0, top: 0 }}
-      initial={{ x: "-20%", y, scale: 0.8, opacity: 0 }}
+      initial={initial || defaultInitial}
       animate={animate || defaultAnimate}
       transition={ transition || defaultTransition }
     >

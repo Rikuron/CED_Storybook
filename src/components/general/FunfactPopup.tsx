@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { useResponsive } from "../hooks/useResponsive"
+import { useResponsive } from "../../hooks/useResponsive"
 
 interface FunfactPopupProps {
   text: string

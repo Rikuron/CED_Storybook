@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
-import { unicellInfo } from "../data/unicellInfo"
-import { useResponsive } from "../hooks/useResponsive"
+import { unicellInfo } from "../../data/unicellInfo"
+import { useResponsive } from "../../hooks/useResponsive"
 
 interface FloatingOrganismsProps {
   challengeMode: boolean

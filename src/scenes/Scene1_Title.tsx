@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
-import { NarrationDialogue } from "../components/NarrationDialogue"
-import { TitleSceneContent } from "../components/TitleSceneContent"
-import { InteractiveHint } from "../components/InteractiveHint"
-import { Hero } from "../components/Hero"
+import { NarrationDialogue } from "../components/general/NarrationDialogue"
+import { TitleSceneContent } from "../components/scene1/TitleSceneContent"
+import { InteractiveHint } from "../components/scene1/InteractiveHint"
+import { Hero } from "../components/general/Hero"
 import { useResponsive } from "../hooks/useResponsive"
 
 interface Scene1Props {
@@ -45,7 +45,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/Initial Assets/space_bg.png')" }}
+        style={{ backgroundImage: "url('/Background/space_bg.png')" }}
       />
 
       {/* Background Overlay */}

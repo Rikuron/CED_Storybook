@@ -1,18 +1,22 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { useResponsive } from "../hooks/useResponsive"
+import { useResponsive } from "../../hooks/useResponsive"
 
 interface PartIntroductionProps {
   title: string
   highlightWord: string
   isVisible: boolean
   onComplete?: () => void
+  textColor?: string
+  highlightColor?: string
 }
 
 export const PartIntroduction = ({
   title,
   highlightWord,
   isVisible,
-  onComplete
+  onComplete,
+  textColor = "#FFFFFF",
+  highlightColor = "#FB923C"
 }: PartIntroductionProps) => {
   const { isMobile, isTablet, isTV } = useResponsive()
 
@@ -36,16 +40,16 @@ export const PartIntroduction = ({
         >
           {/* Main Title */}
           <motion.h1
-            className={`font-canva-sans-bold ${titleSize} uppercase leading-tight`}
+            className={`font-helvetica ${titleSize} uppercase leading-tight`}
             style={{ WebkitTextStroke: `${textStroke} #000` }}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {parts[0] && <span className="text-white">{parts[0]}</span>}
-            <span className="text-orange-400">{highlightWord}</span>
-            {parts[1] && <span className="text-white">{parts[1]}</span>}
+            {parts[0] && <span style={{ color: textColor }}>{parts[0]}</span>}
+            <span style={{ color: highlightColor }}>{highlightWord}</span>
+            {parts[1] && <span style={{ color: textColor }}>{parts[1]}</span>}
           </motion.h1>
         </motion.div>
       )}

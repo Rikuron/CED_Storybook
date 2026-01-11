@@ -1,4 +1,4 @@
-import { SceneManager } from './components/SceneManager'
+import { SceneManager } from './components/general/SceneManager'
 
 function App() {
   return <SceneManager />

@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
-import { Hero } from "../components/Hero"
-import { NarrationDialogue } from "../components/NarrationDialogue"
-import { SpeechBubble } from "../components/SpeechBubble"
+import { Hero } from "../components/general/Hero"
+import { NarrationDialogue } from "../components/general/NarrationDialogue"
+import { SpeechBubble } from "../components/general/SpeechBubble"
 import { useResponsive } from "../hooks/useResponsive"
 
 interface Scene2Props {
@@ -49,7 +49,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
       {/* Volcanic Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('Initial Assets/prehistoric_bg.png')" }}
+        style={{ backgroundImage: "url('Background/prehistoric_bg.png')" }}
       />
 
       {/* Dramatic Overlay */}

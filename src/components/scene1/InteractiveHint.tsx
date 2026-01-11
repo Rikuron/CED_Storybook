@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { useResponsive } from "../hooks/useResponsive"
+import { useResponsive } from "../../hooks/useResponsive"
 
 interface InteractiveHintProps {
   text: string

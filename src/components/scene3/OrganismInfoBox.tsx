@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
-import { type UnicellInfo, formatOrigin } from "../data/unicellInfo"
-import { useResponsive } from "../hooks/useResponsive"
+import { type UnicellInfo, formatOrigin } from "../../data/unicellInfo"
+import { useResponsive } from "../../hooks/useResponsive"
 
 interface OrganismInfoBoxProps {
   organism: UnicellInfo

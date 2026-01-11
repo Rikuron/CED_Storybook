@@ -1,15 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
-import { Hero } from "../components/Hero"
-import { PartIntroduction } from "../components/PartIntroduction"
-import { SpeechBubble } from "../components/SpeechBubble"
-import { FunfactPopup } from "../components/FunfactPopup"
+import { Hero } from "../components/general/Hero"
+import { PartIntroduction } from "../components/general/PartIntroduction"
+import { SpeechBubble } from "../components/general/SpeechBubble"
+import { FunfactPopup } from "../components/general/FunfactPopup"
 import { unicellInfo } from "../data/unicellInfo"
-import { FloatingOrganisms } from "../components/FloatingOrganisms"
-import { OrganismInfoBox } from "../components/OrganismInfoBox"
-import { FloatingFish } from "../components/FloatingFish"
-import { ChallengePrompt } from "../components/ChallengePrompt"
-import { NarrationDialogue } from "../components/NarrationDialogue"
+import { FloatingOrganisms } from "../components/scene3/FloatingOrganisms"
+import { OrganismInfoBox } from "../components/scene3/OrganismInfoBox"
+import { FloatingFish } from "../components/scene3/FloatingFish"
+import { ChallengePrompt } from "../components/general/ChallengePrompt"
+import { NarrationDialogue } from "../components/general/NarrationDialogue"
 import { useResponsive } from "../hooks/useResponsive"
 
 interface Scene3Props {
@@ -134,6 +134,8 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
         highlightWord="BEGINNING"
         isVisible={showPart1Intro}
         onComplete={() => setShowPart1Intro(false)}
+        textColor="#FFFFFF"
+        highlightColor="#C56C6E"
       />
 
       {/* Hero - Diego */}
@@ -243,6 +245,8 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
         title="LIFE IN THE WATER"
         highlightWord="LIFE"
         isVisible={showPart2Intro}
+        textColor="#FFFFFF"
+        highlightColor="#DF4E1E"
       />
 
       {/* Speed Beams Effect */}

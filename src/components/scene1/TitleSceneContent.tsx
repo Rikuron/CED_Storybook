@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { TypeWriter } from "./TypeWriter"
-import { useResponsive } from "../hooks/useResponsive"
+import { TypeWriter } from "../general/TypeWriter"
+import { useResponsive } from "../../hooks/useResponsive"
 
 interface TitleSceneContentProps {
   isVisible: boolean

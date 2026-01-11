@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { TypeWriter } from "./TypeWriter"
-import { useResponsive } from "../hooks/useResponsive"
+import { useResponsive } from "../../hooks/useResponsive"
 
 interface NarrationDialogueProps {
   text: string
