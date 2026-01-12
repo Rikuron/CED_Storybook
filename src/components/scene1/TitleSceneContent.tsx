@@ -36,12 +36,12 @@ export const TitleSceneContent = ({
                 text="Evolution Chronicles:"
                 delay={500}
                 speed={50}
-                className="text-white font-helvetica-regular drop-shadow-2xl"
+                className="text-white font-helvetica-bold drop-shadow-2xl"
               />
             </h1>
 
             {/* Subtitle */}
-            <h2 className={`${subtitleSize} font-helvetica-bold`}>
+            <h2 className={`${subtitleSize} font-helvetica-blk`}>
               <TypeWriter 
                 text="A "
                 delay={2500}

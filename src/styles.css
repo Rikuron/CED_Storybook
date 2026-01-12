@@ -34,27 +34,39 @@ code {
 
 
 @font-face {
-  font-family: helvetica;
-  src: url('/fonts/HelveticaNowDisplay-ExtBlk.ttf');
+  font-family: helvetica-blk;
+  src: url('/Fonts/HelveticaNowDisplay-ExtBlk.ttf');
+}
+
+@font-face {
+  font-family: helvetica-bold;
+  src: url('/Fonts/HelveticaNowDisplay-Bold.ttf');
+}
+
+@font-face {
+  font-family: helvetica-regular;
+  src: url('/Fonts/HelveticaNowDisplay-Regular.ttf');
 }
 
 @font-face {
   font-family: nexa;
-  src: url('/fonts/Nexa-Book.ttf');
+  src: url('/Fonts/Nexa-Book.ttf');
 }
 
 @font-face {
   font-family: canva-sans-regular;
-  src: url('/fonts/CanvaSans-Regular.otf');
+  src: url('/Fonts/CanvaSans-Regular.otf');
 }
 
 @font-face {
   font-family: canva-sans-bold;
-  src: url('/fonts/CanvaSans-Bold.otf');
+  src: url('/Fonts/CanvaSans-Bold.otf');
 }
 
 @theme inline {
-  --font-helvetica: helvetica, "sans-serif";
+  --font-helvetica: helvetica-regular, "sans-serif";
+  --font-helvetica-bold: helvetica-bold, "sans-serif";
+  --font-helvetica-blk: helvetica-blk, "sans-serif";
   --font-nexa: nexa, "sans-serif";
   --font-canva-sans-regular: canva-sans-regular, "sans-serif";
   --font-canva-sans-bold: canva-sans-bold, "sans-serif";

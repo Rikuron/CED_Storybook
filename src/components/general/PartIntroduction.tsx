@@ -8,6 +8,7 @@ interface PartIntroductionProps {
   onComplete?: () => void
   textColor?: string
   highlightColor?: string
+  showTextStroke?: boolean
 }
 
 export const PartIntroduction = ({
@@ -16,7 +17,8 @@ export const PartIntroduction = ({
   isVisible,
   onComplete,
   textColor = "#FFFFFF",
-  highlightColor = "#FB923C"
+  highlightColor = "#FB923C",
+  showTextStroke = true
 }: PartIntroductionProps) => {
   const { isMobile, isTablet, isTV } = useResponsive()
 
@@ -40,8 +42,8 @@ export const PartIntroduction = ({
         >
           {/* Main Title */}
           <motion.h1
-            className={`font-helvetica ${titleSize} uppercase leading-tight`}
-            style={{ WebkitTextStroke: `${textStroke} #000` }}
+            className={`font-helvetica-blk ${titleSize} uppercase leading-tight`}
+            style={showTextStroke ? { WebkitTextStroke: `${textStroke} #000` } : undefined}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
