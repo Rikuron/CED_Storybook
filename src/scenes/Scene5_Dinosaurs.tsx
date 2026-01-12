@@ -2,14 +2,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import { Hero } from '../components/general/Hero'
 import { PartIntroduction } from '../components/general/PartIntroduction'
-import { WindGusts } from '../components/scene5/WindGusts'
+import { WindGusts } from '../components/general/WindGusts'
 import { NarrationDialogue } from '../components/general/NarrationDialogue'
 import { DinosaurLand } from '../components/scene5/DinosaurLand'
 import { DinosaurInfoBox } from '../components/scene5/DinosaurInfoBox'
 import { dinosaurData } from '../data/dinosaurInfo'
 import { QuestionMarkButton } from '../components/scene5/QuestionMarkButton'
 import { useResponsive } from '../hooks/useResponsive'
-import { DinosaurChallenge } from '@/components/scene5/DinosaurChallenge'
+import { DinosaurChallenge } from '../components/scene5/DinosaurChallenge'
 
 interface Scene5Props {
   onNext: () => void

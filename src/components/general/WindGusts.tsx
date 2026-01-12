@@ -7,13 +7,13 @@ interface WindGustsProps {
 export const WindGusts = ({
   isVisible
 }: WindGustsProps) => {
-  const gusts = Array.from({ length: 8 }, (_, i) => ({
+  const gusts = Array.from({ length: 18 }, (_, i) => ({
     id: i,
     top: `${10 + Math.random() * 60}%`,
     delay: Math.random() * 0.5,
     duration: 0.4 + Math.random() * 0.3,
     width: 40 + Math.random() * 60,
-    opacity: 0.3 + Math.random() * 0.4
+    opacity: 0.5 + Math.random() * 0.4
   }))
 
   return (
@@ -23,11 +23,11 @@ export const WindGusts = ({
           {gusts.map((gust) => (
             <motion.div 
               key={gust.id}
-              className="absolute h-[2px] rounded-full"
+              className="absolute h-[4px] rounded-full"
               style={{
                 top: gust.top,
                 width: gust.width,
-                background: 'linear-gradient(to left, rgba(255,255,255,0.8), transparent)',
+                background: 'linear-gradient(to left, rgba(200,200,200,0.9), transparent)',
                 right: '-100px'
               }}
               initial={{
