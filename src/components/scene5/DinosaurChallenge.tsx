@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { NextPartButton } from '../../components/general/NextPartButton'
 import { useResponsive } from '../../hooks/useResponsive'
 
 interface DinosaurChallengeProps {
@@ -24,7 +25,6 @@ export const DinosaurChallenge = ({
 
   const smallBodyMove = isMobile ? 5 : isTablet ? 5 : isTV ? 30 : 7.5
   const bigBodyMove = isMobile ? 5 : isTablet ? 8 : isTV ? 25 : 7.5
-  const nextButtonMove = isMobile ? 10 : isTablet ? 15 : isTV ? 200 : 50
 
   return (
     <AnimatePresence>
@@ -102,31 +102,12 @@ export const DinosaurChallenge = ({
           </motion.div>
 
           {/* Next Part Button (bottom right) */}
-          <motion.button
-            className={`absolute z-60 flex items-center gap-3 cursor-pointer ${isTV ? 'rounded-[5rem]' : 'rounded-2xl'} bg-white/10 backdrop-blur-sm border border-transparent hover:bg-white/20 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300`}
-            style={{
-              padding: containerPadding,
-              bottom: isMobile ? '4%' : isTablet ? '5%' : isTV ? '4%' : '5%',
-              right: isMobile ? '4%' : isTablet ? '5%' : isTV ? '7%' : '6%'
-            }}
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: [nextButtonMove, 0, nextButtonMove], opacity: 1 }}
-            exit={{ x: 100, opacity: 0 }}
-            transition={{ 
-              x: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 0.5, delay: 0.4 }
-            }}
-            whileHover={{ scale: 1.05 }}
-            onClick={onNext}
-          >
-            <span className={`text-white font-nexa ${buttonSize}`}>Next Part</span>
-            <motion.img
-              src="/Initial Assets/right_arrow.png"
-              alt="next"
-              className={buttonArrowSize}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </motion.button>
+          <NextPartButton 
+            onClick={onNext} 
+            arrowSize={buttonArrowSize}  
+            buttonTextSize={buttonSize}
+            padding={containerPadding}
+          />
         </>
       )}
     </AnimatePresence>

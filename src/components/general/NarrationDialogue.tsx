@@ -19,7 +19,7 @@ export const NarrationDialogue = ({
 }: NarrationDialogueProps) => {
   const { isMobile, isTablet, isTV } = useResponsive()
 
-  const textStroke = isMobile ? '0.4px #000' : isTablet ? '0.25px #000' : isTV ? '1.5px #000' : '0.8px #000'
+  const textStroke = isMobile ? '0.4px #000' : isTablet ? '0.25px #000' : isTV ? '4px #000' : '0.8px #000'
   const fontSize = isMobile ? '0.875rem' : isTablet ? '1rem' : isTV ? '5.5rem' : '1.5rem'
 
   return (
@@ -41,7 +41,7 @@ export const NarrationDialogue = ({
           text={text}
           delay={delay}
           speed={speed}
-          className="text-white font-canva-sans-bold"
+          className="text-white font-helvetica-blk"
           onComplete={onComplete}
         />
       </p>

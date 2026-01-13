@@ -8,7 +8,8 @@ import { unicellInfo } from "../data/unicellInfo"
 import { FloatingOrganisms } from "../components/scene3/FloatingOrganisms"
 import { OrganismInfoBox } from "../components/scene3/OrganismInfoBox"
 import { FloatingFish } from "../components/scene3/FloatingFish"
-import { ChallengePrompt } from "../components/general/ChallengePrompt"
+import { Prompt } from "../components/general/Prompt"
+import { NextPartButton } from "../components/general/NextPartButton"
 import { NarrationDialogue } from "../components/general/NarrationDialogue"
 import { useResponsive } from "../hooks/useResponsive"
 
@@ -43,6 +44,14 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       clearTimeout(contentTimer)
     }
   }, [])
+
+  useEffect(() => {
+    if (showFinalNarration) {
+      const timer = setTimeout(() => onNext(), 5000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [showFinalNarration, onNext])
 
   const handleNextPart = () => {
     setIsTransitioning(true)
@@ -232,11 +241,15 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       {/* Challenge Prompt */}
       <AnimatePresence>
         {challengeMode && !isTransitioning && showContent && (
-          <ChallengePrompt  
+          <Prompt 
             title="Diego's Challenge"
-            question="Why do you think life started in water and not on land?"
-            onNext={handleNextPart}
+            subtitle="Why do you think life started in water and not on land?"
           />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {challengeMode && !isTransitioning && showContent && (
+          <NextPartButton onClick={handleNextPart} />
         )}
       </AnimatePresence>
 
@@ -324,14 +337,20 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       {/* Fish Challenge */}
       <AnimatePresence>
         {showFishChallenge && (
-          <ChallengePrompt 
+          <Prompt 
             title="Question"
-            question="Why do you think fins are important for swimming?"
-            onNext={() => {
+            subtitle="Why do you think fins are important for swimming?"
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showFishChallenge && (
+          <NextPartButton 
+            onClick={() => {
               setShowFishChallenge(false)
               setIsFinalTransition(true)
               setTimeout(() => setShowFinalNarration(true), 2000)
-            }}
+            }} 
           />
         )}
       </AnimatePresence>
@@ -353,13 +372,10 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
       {/* Final Narration */}
       <AnimatePresence>
         {showFinalNarration && (
-          <NarrationDialogue  
-            text="Evolution happens slowly through many generations. Small changes that improve survival become common in a population over time."
-            delay={500}
-            speed={25}
-            onComplete={() => {
-              setTimeout(() => onNext(), 3500)
-            }}
+          <Prompt  
+            title="Deeper Understanding"
+            subtitle="Evolution happens slowly through many generations. Small changes that improve survival become common in a population over time."
+            titleColor="#FFFFFF"
           />
         )}
       </AnimatePresence>
