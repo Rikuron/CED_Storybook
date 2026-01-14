@@ -15,9 +15,11 @@ export const SceneManager = () => {
   }
 
   const renderScene = () => {
+    console.log("Current Scene: ", currentScene)
     switch (currentScene) {
       case 1:
         return <Scene6_Temperature key="scene1" onNext={nextScene} />
+
       case 2:
         return <Scene2_Volcanic key="scene2" onNext={nextScene} />  
       case 3:
@@ -25,7 +27,7 @@ export const SceneManager = () => {
       case 4:
         return <Scene4_Amphibian key="scene4" onNext={nextScene} />
       case 5:
-        return <Scene5_Dinosaurs key="scene5" onNext={nextScene} />
+        return <Scene5_Dinosaurs key="scene2" onNext={nextScene} />
       case 6:
         return <Scene1_Title key="scene6" onNext={nextScene} />
       default:
@@ -35,7 +37,7 @@ export const SceneManager = () => {
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-black">
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {renderScene()}
       </AnimatePresence>
     </div>

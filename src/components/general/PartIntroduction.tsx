@@ -24,7 +24,7 @@ export const PartIntroduction = ({
 
   const parts = title.split(highlightWord)
   const titleSize = isMobile ? 'text-2xl' : isTablet ? 'text-4xl' : isTV ? 'text-[10rem]' : 'text-6xl'
-  const textStroke = isMobile ? '1px' : isTablet ? '1.5px' : isTV ? '4px' : '2px'
+  const textStroke = isMobile ? '1px' : isTV ? '4px' : '1.5px'
 
   return (
     <AnimatePresence>

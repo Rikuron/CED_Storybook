@@ -200,7 +200,7 @@ export const Scene6_Temperature = ({ onNext }: Scene6Props) => {
           <SpeechBubble  
             text="?"
             position={{
-              left: isMobile ? '38vw' : isTablet ? '50vw' : isTV ? '52.5vw' : '55vw',
+              left: isMobile ? '38vw' : isTablet ? '47vw' : isTV ? '52.5vw' : '45vw',
               top: isMobile ? '18vh' : isTablet ? '22vh' : isTV ? '20vh' : '28vh'
             }}
             tailPosition="bottom-left"

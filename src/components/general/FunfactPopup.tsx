@@ -13,7 +13,7 @@ export const FunfactPopup = ({ text, delay = 0 }: FunfactPopupProps) => {
 
   return (
     <motion.div
-      className={`absolute ${isTV ? 'bottom-1/12' : 'bottom-8'} z-40`}
+      className={`absolute ${isTV ? 'bottom-1/12 max-w-3/5' : 'bottom-8 max-w-2/5'} z-40`}
       style={{ left: isMobile ? '1rem' : isTablet ? '2rem' : isTV ? '8rem' : '2rem' }}
       initial={{ scale: 0, opacity:  0 }}
       animate={{ scale: 1, opacity: 1 }}
@@ -33,7 +33,7 @@ export const FunfactPopup = ({ text, delay = 0 }: FunfactPopupProps) => {
         }}
       >
         <p 
-          className={`text-white font-canva-sans-regular leading-relaxed`}
+          className={`text-white text-center font-canva-sans-regular leading-relaxed`}
           style={{ fontSize }}
         >
           {text}

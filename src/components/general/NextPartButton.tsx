@@ -29,12 +29,10 @@ export const NextPartButton = ({
       className={`absolute z-60 flex items-center cursor-pointer ${isTV ? 'rounded-[5rem] gap-12' : 'rounded-2xl gap-3'} bg-white/2.5 backdrop-blur-sm border border-transparent hover:bg-white/10 hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 ${isMobile ? 'bottom-4 right-4' : isTablet ? 'bottom-6 right-6' : isTV ? 'bottom-16 right-16' : 'bottom-8 right-8'}`}
       style={{ padding: finalPadding }}
       initial={{ opacity: 0, x: 30 }}
-      animate={{ x: [0, -30, 0], opacity: 1 }}
+      animate={{ x: 0, opacity: 1 }}
       exit={{ opacity: 0, x: 30 }}
-      transition={{ 
-        opacity: { duration: 0.5 },
-        x: { duration: 2.5, repeat: Infinity, ease: "easeInOut" } 
-      }}
+      transition={{ duration: 0.5 }}
+      whileInView={{ x: [0, -10, 0] }}
       onClick={onClick}
     >
       <span className={`text-white font-nexa ${finalButtonSize}`}>Next Part</span>
