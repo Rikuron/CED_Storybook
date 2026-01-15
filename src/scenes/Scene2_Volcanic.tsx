@@ -110,7 +110,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
               bottom: '0%',
             }}
             animate={{
-              y: [0, -window.innerHeight * 0.5],
+              y: [0, -window.innerHeight * 0.3],
               x: [0, (Math.random() - 0.5) * xDrift],
               opacity: [0, 0.7, 0],
               scale: [0.5, 1, 0.3]

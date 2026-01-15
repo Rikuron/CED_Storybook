@@ -88,7 +88,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
         onHoverEnd={() => setIsHovered(false)}
       >
         <motion.img 
-          src="/Initial Assets/alt_earth.png" 
+          src="/Initial Assets/1_Earth.png" 
           alt="Earth" 
           className=" object-contain will-change-transform"
           style={{ 

@@ -84,7 +84,7 @@ export const unicellInfo: UnicellInfo[] = [
     ],
     image: "/Initial Assets/unicell_4.png",
     position: { x: '50%', y: '75%' },
-    size: 35,
+    size: 50,
     floatDuration: 3.0
   },
 
