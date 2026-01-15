@@ -8,6 +8,7 @@ import { Scene5_Dinosaurs } from "../../scenes/Scene5_Dinosaurs"
 import { Scene6_Temperature } from "../../scenes/Scene6_Temperature"
 import { Scene7_Mammals } from "../../scenes/Scene7_Mammals"
 import { Scene8_Humans } from "../../scenes/Scene8_Humans"
+import { Scene9_Outro } from "../../scenes/Scene9_Outro"
 
 export const SceneManager = () => {
   const [currentScene, setCurrentScene] = useState(1)
@@ -20,7 +21,8 @@ export const SceneManager = () => {
     console.log("Current Scene: ", currentScene)
     switch (currentScene) {
       case 1:
-        return <Scene1_Title key="scene1" onNext={nextScene} />
+        return <Scene9_Outro key="scene1" onNext={nextScene} />
+        
       case 2:
         return <Scene2_Volcanic key="scene2" onNext={nextScene} />  
       case 3:
@@ -35,6 +37,8 @@ export const SceneManager = () => {
         return <Scene7_Mammals key="scene7" onNext={nextScene} />
       case 8:
         return <Scene8_Humans key="scene8" onNext={nextScene} />
+      case 9:
+        return <Scene1_Title key="scene9" onNext={nextScene} />
       default:
         return <Scene1_Title key="scene1" onNext={nextScene} />
     }
