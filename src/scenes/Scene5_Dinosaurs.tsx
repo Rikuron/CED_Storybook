@@ -32,8 +32,8 @@ export const Scene5_Dinosaurs = ({ onNext }: Scene5Props) => {
   const biggerRoarRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => { 
-    smallerRoarRef.current = new Audio('/audio/dinosaur-2-86565.mp3')
-    biggerRoarRef.current = new Audio('/audio/dinosaur-growl-106744.mp3')
+    smallerRoarRef.current = new Audio('/audio/Velociraptor_Audio.mp3')
+    biggerRoarRef.current = new Audio('/audio/Brachiosaurus_Audio.mp3')
 
     const landingTimer = setTimeout(() => {
       setIsLanding(true)

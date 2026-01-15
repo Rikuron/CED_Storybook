@@ -2,14 +2,14 @@ import { type DinosaurInfo } from '../components/scene5/DinosaurInfoBox'
 
 export const dinosaurData: Record<'smaller' | 'bigger', DinosaurInfo> = {
   smaller: {
-    name: "Brachiosaurus Junior",
-    scientificName: "Brachiosaurus altithorax",
-    period: "Late Jurassic (154-150 million years ago)",
+    name: "Velociraptor",
+    scientificName: "Velociraptor mongoliensis",
+    period: "Late Cretaceous (75-71 million years ago)",
     features: [
-      "Long neck for reaching treetops",
-      "Herbivore that ate plants",
-      "Could grow up to 85 feet long",
-      "Lived in herds for protection"
+      "Small but fierce predator",
+      "Had sharp, curved claws for hunting",
+      "Covered in feathers like birds",
+      "Hunted in packs for larger prey"
     ]
   },
   bigger: {

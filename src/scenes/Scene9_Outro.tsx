@@ -122,7 +122,7 @@ export const Scene9_Outro = ({ onNext }: Scene9Props) => {
   }
 
   // Text styling
-  const titleFontSize = isMobile ? '1.25rem' : isTablet ? '1.75rem' : isTV ? '6rem' : '2.5rem'
+  const titleFontSize = isMobile ? '1.25rem' : isTablet ? '1.75rem' : isTV ? '10rem' : '2.5rem'
   const titleStroke = isMobile ? '0.5px' : isTablet ? '1px' : isTV ? '3px' : '1.5px'
 
   return (
@@ -266,7 +266,7 @@ export const Scene9_Outro = ({ onNext }: Scene9Props) => {
             transition={{ duration: 0.8 }}
           >
             <motion.h1
-              className="text-center font-helvetica-blk text-white px-8 max-w-4xl"
+              className="text-center font-helvetica-blk text-white px-8 max-w-3/4"
               style={{ 
                 fontSize: titleFontSize,
                 WebkitTextStroke: `${titleStroke} #000`,

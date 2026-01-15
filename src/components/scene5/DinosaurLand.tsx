@@ -36,7 +36,7 @@ export const DinosaurLand = ({
 
           {/* Smaller Dinosaur (left side) */}
           <motion.img
-            src="/initial_assets/smaller_dinosaur.png"
+            src="/initial_assets/7_SmallDinosaur.png"
             alt="Small dinosaur"
             className={`absolute object-contain ${isInteractive ? 'cursor-pointer' : ''}`}
             style={{
@@ -46,7 +46,13 @@ export const DinosaurLand = ({
               pointerEvents: isInteractive ? 'auto' : 'none'
             }}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0,
+              filter: isInteractive
+                ? 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))'
+                : 'none' 
+            }}
             whileHover={isInteractive ? { scale: 1.05 } : undefined}
             whileTap={isInteractive ? { scale: 0.95 } : undefined}
             transition={{ duration: 0.25 }}
@@ -68,7 +74,13 @@ export const DinosaurLand = ({
               pointerEvents: isInteractive ? 'auto' : 'none'
             }}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0,
+              filter: isInteractive
+                ? 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))'
+                : 'none' 
+            }}
             whileHover={isInteractive ? { scale: 1.05 } : undefined}
             whileTap={isInteractive ? { scale: 0.95 } : undefined}
             transition={{ duration: 0.25 }}
