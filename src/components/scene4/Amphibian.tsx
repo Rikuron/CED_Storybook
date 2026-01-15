@@ -114,7 +114,7 @@ export const Amphibian = ({
               />
             )}
             <img
-              src="/initial_assets/5_tiktaalik.png"
+              src="/initial_assets/5_Tiktaalik.png"
               alt="Tiktaalik - Early amphibian"
               className="w-full h-auto object-contain"
             />
