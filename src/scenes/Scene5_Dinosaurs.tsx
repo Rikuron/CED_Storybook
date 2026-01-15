@@ -32,8 +32,8 @@ export const Scene5_Dinosaurs = ({ onNext }: Scene5Props) => {
   const biggerRoarRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => { 
-    smallerRoarRef.current = new Audio('/Audio/dinosaur-2-86565.mp3')
-    biggerRoarRef.current = new Audio('/Audio/dinosaur-growl-106744.mp3')
+    smallerRoarRef.current = new Audio('/audio/dinosaur-2-86565.mp3')
+    biggerRoarRef.current = new Audio('/audio/dinosaur-growl-106744.mp3')
 
     const landingTimer = setTimeout(() => {
       setIsLanding(true)
@@ -111,7 +111,7 @@ export const Scene5_Dinosaurs = ({ onNext }: Scene5Props) => {
     >
       {/* Background */}
       <img
-        src="/Background/scene5_bg.png"
+        src="/background/scene5_bg.png"
         alt="Dinosaur era background"
         className="absolute inset-0 w-full h-full object-cover"
       />

@@ -49,7 +49,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
       {/* Volcanic Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('Background/prehistoric_bg.png')" }}
+        style={{ backgroundImage: "url('background/prehistoric_bg.png')" }}
       />
 
       {/* Dramatic Overlay */}

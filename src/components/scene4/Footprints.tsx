@@ -64,7 +64,7 @@ export const Footprints = ({
                 />
               )}
               <img 
-                src="/Initial Assets/brown_oval.png"
+                src="/initial_assets/brown_oval.png"
                 alt="Footprint"
                 className="w-full h-auto relative z-10"
               />

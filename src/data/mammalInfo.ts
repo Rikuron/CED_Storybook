@@ -30,7 +30,7 @@ export const mammalData: MammalInfo[] = [
       { feature_item: "Its skull was heavily reinforced to withstand massive stress, suggesting its teeth could handle forces far exceeding normal biting." },
       { feature_item: "It was a herbivore that lived in forested or estuarine environments." }
     ],
-    image: "/Initial Assets/11_Mammal.png",
+    image: "/initial_assets/11_Mammal.png",
     position: { x: '75%', y: '40%' },
     size: 200
   },
@@ -47,7 +47,7 @@ export const mammalData: MammalInfo[] = [
       { feature_item: "Its skull was heavily reinforced to withstand massive stress, suggesting its teeth could handle forces far exceeding normal biting." },
       { feature_item: "It was a herbivore that lived in forested or estuarine environments." }
     ],
-    image: "/Initial Assets/11_Mammal.png",
+    image: "/initial_assets/11_Mammal.png",
     position: { x: '40%', y: '55%' },
     size: 230
   },
@@ -64,7 +64,7 @@ export const mammalData: MammalInfo[] = [
       { feature_item: "Its skull was heavily reinforced to withstand massive stress, suggesting its teeth could handle forces far exceeding normal biting." },
       { feature_item: "It was a herbivore that lived in forested or estuarine environments." }
     ],
-    image: "/Initial Assets/11_Mammal.png",
+    image: "/initial_assets/11_Mammal.png",
     position: { x: '65%', y: '80%' },
     size: 180
   }

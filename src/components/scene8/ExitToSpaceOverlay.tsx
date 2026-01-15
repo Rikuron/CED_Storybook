@@ -27,7 +27,7 @@ export const ExitToSpaceOverlay = ({ isVisible }: ExitToSpaceOverlayProps) => {
                 height: '60%',
                 top: `${-50 + i * 20}%`,
                 left: '-50%',
-                background: 'url("/Initial Assets/clouds.png")',
+                background: 'url("/initial_assets/clouds.png")',
                 backgroundSize: 'cover',
                 filter: `blur(${2 + i}px)`,
                 opacity: 0.7 - i * 0.1,

@@ -45,7 +45,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
       {/* Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/Background/space_bg.png')" }}
+        style={{ backgroundImage: "url('/background/space_bg.png')" }}
       />
 
       {/* Background Overlay */}
@@ -88,7 +88,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
         onHoverEnd={() => setIsHovered(false)}
       >
         <motion.img 
-          src="/Initial Assets/1_Earth.png" 
+          src="/initial_assets/1_Earth.png" 
           alt="Earth" 
           className=" object-contain will-change-transform"
           style={{ 
@@ -186,7 +186,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
                   height: '60%',
                   top: `${10 + i * 15}%`,
                   left: '-50%',
-                  background: 'url("/Initial Assets/clouds.png")',
+                  background: 'url("/initial_assets/clouds.png")',
                   backgroundSize: 'cover',
                   filter: `blur(${2 + i}px)`,
                   opacity: 0.7 - i * 0.1,

@@ -90,10 +90,10 @@ export const Scene6_Temperature = ({ onNext }: Scene6Props) => {
 
   const getBackgroundImage = () => {
     switch (climateLevel) {
-      case 'cold': return '/Background/8_Part5Cold.png'
-      case 'hot': return '/Background/9_Part5Hot.png'
-      case 'perfect': return '/Background/10_Part5Grass.png'
-      default: return '/Background/scene5_bg.png'
+      case 'cold': return '/background/8_Part5Cold.png'
+      case 'hot': return '/background/9_Part5Hot.png'
+      case 'perfect': return '/background/10_Part5Grass.png'
+      default: return '/background/scene5_bg.png'
     }
   }
 

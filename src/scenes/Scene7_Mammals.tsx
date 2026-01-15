@@ -88,7 +88,7 @@ export const Scene7_Mammals = ({ onNext }: Scene7Props) => {
     >
       {/* Background */}
       <img
-        src="/Background/scene7_bg.png"
+        src="/background/scene7_bg.png"
         alt="Mammals era background"
         className="absolute inset-0 w-full h-full object-cover"
       />

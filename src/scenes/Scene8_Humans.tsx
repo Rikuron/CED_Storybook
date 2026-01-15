@@ -17,31 +17,31 @@ const humanSpecies = [
   { 
     id: 0,
     name: 'Australopithecus',
-    image: '/Initial Assets/12.1_Australopithecus.png',
+    image: '/initial_assets/12.1_Australopithecus.png',
     position: 5
   },
   {
     id: 1,
     name: 'Homo Habilis',
-    image: '/Initial Assets/12.2_Homo habilis.png',
+    image: '/initial_assets/12.2_Homo habilis.png',
     position: 25
   },
   {
     id: 2,
     name: 'Homo Erectus',
-    image: '/Initial Assets/12.3_Homo erectus.png',
+    image: '/initial_assets/12.3_Homo erectus.png',
     position: 50
   },
   {
     id: 3,
     name: 'Neanderthals',
-    image: '/Initial Assets/12.4_Neanderthals.png',
+    image: '/initial_assets/12.4_Neanderthals.png',
     position: 75
   },
   {
     id: 4,
     name: 'Homo Sapiens (Us!)',
-    image: '/Initial Assets/12.5_Homo Sapiens.png',
+    image: '/initial_assets/12.5_Homo Sapiens.png',
     position: 95
   }
 ]
@@ -176,7 +176,7 @@ export const Scene8_Humans = ({ onNext }: Scene8Props) => {
     >
       {/* Background - Same as Scene 7 */}
       <img
-        src="/Background/scene7_bg.png"
+        src="/background/scene7_bg.png"
         alt="Humans era background"
         className="absolute inset-0 w-full h-full object-cover"
       />

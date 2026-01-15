@@ -93,7 +93,7 @@ export const FloatingFish = ({
                 )}
 
                 <img 
-                  src={i % 2 === 0 ? "Initial Assets/fish_1.png" : "Initial Assets/fish_2.png"} 
+                  src={i % 2 === 0 ? "/initial_assets/fish_1.png" : "/initial_assets/fish_2.png"} 
                   alt="fish"
                   style={{ width: `${baseFishSize + (i % 3) * fishSizeVariation}px` }}
                 />
@@ -101,7 +101,7 @@ export const FloatingFish = ({
                 {/* Question Mark for highlighted fish */}
                 {isHighlighted && (
                   <motion.img  
-                    src="/Initial Assets/question_mark.png"
+                    src="/initial_assets/question_mark.png"
                     alt="?"
                     className="absolute -top-8 left-1/2 -translate-x-1/2"
                     style={{ width: questionMarkSize }}

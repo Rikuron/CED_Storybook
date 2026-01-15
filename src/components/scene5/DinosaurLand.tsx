@@ -29,14 +29,14 @@ export const DinosaurLand = ({
         >
           {/* Land Image */}
           <img
-            src="/Initial Assets/scene5_land.png"
+            src="/initial_assets/scene5_land.png"
             alt="Prehistoric land"
             className="w-full h-auto"
           />
 
           {/* Smaller Dinosaur (left side) */}
           <motion.img
-            src="/Initial Assets/smaller_dinosaur.png"
+            src="/initial_assets/smaller_dinosaur.png"
             alt="Small dinosaur"
             className={`absolute object-contain ${isInteractive ? 'cursor-pointer' : ''}`}
             style={{
@@ -58,7 +58,7 @@ export const DinosaurLand = ({
 
           {/* Bigger Dinosaur (right side) */}
           <motion.img
-            src="/Initial Assets/bigger_dinosaur.png"
+            src="/initial_assets/bigger_dinosaur.png"
             alt="Big dinosaur"
             className={`absolute object-contain ${isInteractive ? 'cursor-pointer' : ''}`}
             style={{

@@ -35,32 +35,32 @@ code {
 
 @font-face {
   font-family: helvetica-blk;
-  src: url('/Fonts/HelveticaNowDisplay-ExtBlk.ttf');
+  src: url('/fonts/HelveticaNowDisplay-ExtBlk.ttf');
 }
 
 @font-face {
   font-family: helvetica-bold;
-  src: url('/Fonts/HelveticaNowDisplay-Bold.ttf');
+  src: url('/fonts/HelveticaNowDisplay-Bold.ttf');
 }
 
 @font-face {
   font-family: helvetica-regular;
-  src: url('/Fonts/HelveticaNowDisplay-Regular.ttf');
+  src: url('/fonts/HelveticaNowDisplay-Regular.ttf');
 }
 
 @font-face {
   font-family: nexa;
-  src: url('/Fonts/Nexa-Book.ttf');
+  src: url('/fonts/Nexa-Book.ttf');
 }
 
 @font-face {
   font-family: canva-sans-regular;
-  src: url('/Fonts/CanvaSans-Regular.otf');
+  src: url('/fonts/CanvaSans-Regular.otf');
 }
 
 @font-face {
   font-family: canva-sans-bold;
-  src: url('/Fonts/CanvaSans-Bold.otf');
+  src: url('/fonts/CanvaSans-Bold.otf');
 }
 
 @theme inline {

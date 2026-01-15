@@ -46,7 +46,7 @@ export const DinosaurChallenge = ({
             }}
           >
             <img
-              src="/Initial Assets/left_arrow.png"
+              src="/initial_assets/left_arrow.png"
               alt="arrow"
               className={arrowSize}
             />
@@ -70,7 +70,7 @@ export const DinosaurChallenge = ({
           >
             <span className={`text-white font-canva-sans-bold ${labelSize}`}>Big Body</span>
             <img
-              src="/Initial Assets/right_arrow.png"
+              src="/initial_assets/right_arrow.png"
               alt="arrow"
               className={arrowSize}
             />

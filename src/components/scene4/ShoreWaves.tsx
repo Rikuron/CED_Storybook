@@ -45,14 +45,14 @@ export const ShoreWaves =({
 
       {/* Shore Background */}
       <img 
-        src="/Initial Assets/shore_land.png" 
+        src="/initial_assets/shore_land.png" 
         alt="Shore background" 
         className="absolute inset-0 w-full h-full" 
       />
       
       {/* Inner Wave */}
       <motion.img 
-        src="/Initial Assets/inner_wave.png" 
+        src="/initial_assets/inner_wave.png" 
         alt="Inner wave" 
         className="absolute object-cover pointer-events-none z-0"
         style={{ left: "-20%", top: 0, width: "50%", height: "100%" }} 
@@ -61,7 +61,7 @@ export const ShoreWaves =({
       
       {/* Middle Wave */}
       <motion.img 
-        src="/Initial Assets/middle_wave.png" 
+        src="/initial_assets/middle_wave.png" 
         alt="Middle wave" 
         className="absolute object-cover pointer-events-none z-5"
         style={{ left: "-10%", top: 0, width: "65%", height: "100%" }} 
@@ -70,7 +70,7 @@ export const ShoreWaves =({
 
       {/* Outer Wave */}
       <motion.img 
-        src="/Initial Assets/outer_wave.png" 
+        src="/initial_assets/outer_wave.png" 
         alt="Outer wave" 
         className="absolute object-cover pointer-events-none z-10"
         style={{ left: "6.5%", top: 0, width: "70%", height: "100%" }} 

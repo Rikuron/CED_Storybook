@@ -46,7 +46,7 @@ export const QuestionMarkButton = ({
           />
           {/* Question mark image */}
           <motion.img
-            src="/Initial Assets/question_mark.png"
+            src="/initial_assets/question_mark.png"
             alt="Question"
             style={{ width: size, height: 'auto' }}
             animate={{ y: [0, -8, 0] }}

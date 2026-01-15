@@ -37,7 +37,7 @@ export const NextPartButton = ({
     >
       <span className={`text-white font-nexa ${finalButtonSize}`}>Next Part</span>
       <img 
-        src="/Initial Assets/right_arrow.png" 
+        src="/initial_assets/right_arrow.png" 
         alt="next part arrow" 
         className={finalArrowSize}
       />

@@ -57,7 +57,7 @@ export const Amphibian = ({
       {footprints.map((fp, index) => (
         <motion.img
           key={fp.id}
-          src="/Initial Assets/brown_oval.png"
+          src="/initial_assets/brown_oval.png"
           alt="Footprint"
           className="absolute pointer-events-none"
           style={{
@@ -114,7 +114,7 @@ export const Amphibian = ({
               />
             )}
             <img
-              src="/Initial Assets/5_Tiktaalik.png"
+              src="/initial_assets/5_tiktaalik.png"
               alt="Tiktaalik - Early amphibian"
               className="w-full h-auto object-contain"
             />
