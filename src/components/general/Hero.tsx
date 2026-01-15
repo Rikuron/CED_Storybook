@@ -61,7 +61,7 @@ export const Hero =({
       transition={ transition || defaultTransition }
     >
       <motion.img
-        src="/initial_assets/diego.png"
+        src="/initial_assets/1_Diego_Default.png"
         alt="Diego the UFO"
         className="w-32 h-32 object-contain drop-shadow-2xl"
         animate={{
