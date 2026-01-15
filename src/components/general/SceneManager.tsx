@@ -9,20 +9,20 @@ import { Scene6_Temperature } from "../../scenes/Scene6_Temperature"
 import { Scene7_Mammals } from "../../scenes/Scene7_Mammals"
 import { Scene8_Humans } from "../../scenes/Scene8_Humans"
 import { Scene9_Outro } from "../../scenes/Scene9_Outro"
+import { Scene10_Montage } from "../../scenes/Scene10_Montage"
 
 export const SceneManager = () => {
   const [currentScene, setCurrentScene] = useState(1)
 
   const nextScene = () => {
-    setCurrentScene((prev) => Math.min(prev + 1, 10))
+    setCurrentScene((prev) => prev >= 10 ? 1 : prev + 1)
   }
 
   const renderScene = () => {
     console.log("Current Scene: ", currentScene)
     switch (currentScene) {
       case 1:
-        return <Scene9_Outro key="scene1" onNext={nextScene} />
-        
+        return <Scene1_Title key="scene1" onNext={nextScene} />
       case 2:
         return <Scene2_Volcanic key="scene2" onNext={nextScene} />  
       case 3:
@@ -38,7 +38,9 @@ export const SceneManager = () => {
       case 8:
         return <Scene8_Humans key="scene8" onNext={nextScene} />
       case 9:
-        return <Scene1_Title key="scene9" onNext={nextScene} />
+        return <Scene9_Outro key="scene9" onNext={nextScene} />
+      case 10:
+        return <Scene10_Montage key="scene10" onNext={nextScene} />        
       default:
         return <Scene1_Title key="scene1" onNext={nextScene} />
     }

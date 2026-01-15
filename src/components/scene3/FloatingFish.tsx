@@ -6,6 +6,7 @@ interface FloatingFishProps {
   highlightedFishIndex?: number | null
   onFishClick?: (index: number) => void
   exitLeft?: boolean
+  montageMode?: boolean
 }
 
 const fishPositions = [
@@ -20,11 +21,24 @@ const fishPositions = [
   { top: '85%', xEnd: 0.65 },
 ]
 
+const montageFishPositions = [
+  { top: '65%', xEnd: 0, delay: 0.0 },
+  { top: '15%', xEnd: 0, delay: 0.3 },
+  { top: '45%', xEnd: 0, delay: 0.6 },
+  { top: '80%', xEnd: 0, delay: 0.9 },
+  { top: '25%', xEnd: 0, delay: 1.2 },
+  { top: '55%', xEnd: 0, delay: 1.5 },
+  { top: '10%', xEnd: 0, delay: 0.15 },
+  { top: '70%', xEnd: 0, delay: 0.75 },
+  { top: '35%', xEnd: 0, delay: 1.35 },
+]
+
 export const FloatingFish = ({ 
   isVisible,
   highlightedFishIndex,
   onFishClick,
-  exitLeft = false
+  exitLeft = false,
+  montageMode = false
 }: FloatingFishProps) => {
   const { isMobile, isTablet, isTV } = useResponsive()
 
@@ -37,7 +51,7 @@ export const FloatingFish = ({
     <AnimatePresence>
       {isVisible && (
         <>
-          {fishPositions.map((fish, i) => {
+          {(montageMode ? montageFishPositions : fishPositions).map((fish, i) => {
             const isHighlighted = highlightedFishIndex === i
 
             return (
@@ -48,8 +62,17 @@ export const FloatingFish = ({
                   top: fish.top,
                   right: '-150px'
                 }}
-                initial={{ x: 0, y: 0, opacity: 0 }}
-                animate={{
+                initial={{ 
+                  x: montageMode ? 200 : 0, 
+                  y: 0, 
+                  opacity: 0 
+                }}
+                animate={montageMode ? {
+                  x: -window.innerWidth - 300,
+                  y: [0, -15, 0, 15, 0],
+                  opacity: [0, 1, 1, 0],
+                  scale: 1
+                } : {
                   x: exitLeft 
                     ? -window.innerWidth - 200
                     : [0, -window.innerWidth * fish.xEnd],
@@ -57,7 +80,22 @@ export const FloatingFish = ({
                   opacity: exitLeft ? [1, 0] : [0, 1, 1],
                   scale: isHighlighted ? 1.25 : 1
                 }}
-                transition={{
+                transition={montageMode ? {
+                  x: {
+                    duration: 2,
+                    delay: montageMode ? (fish as any).delay : i * 0.15,
+                    ease: "linear"
+                  },
+                  y: {
+                    duration: 0.8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  },
+                  opacity: {
+                    duration: 2,
+                    delay: montageMode ? (fish as any).delay : i * 0.15
+                  }
+                } : {
                   x: {
                     duration: exitLeft ? 1.5 : 2 + (i % 3) * 0.5,
                     delay: exitLeft? i * 0.1 : i * 0.3,

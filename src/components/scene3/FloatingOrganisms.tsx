@@ -8,6 +8,7 @@ interface FloatingOrganismsProps {
   hoveredOrganism: number | null
   onHover: (id: number | null) => void
   onOrganismClick: () => void
+  montageMode?: boolean
 }
 
 export const FloatingOrganisms = ({
@@ -15,7 +16,8 @@ export const FloatingOrganisms = ({
   isTransitioning,
   hoveredOrganism,
   onHover,
-  onOrganismClick
+  onOrganismClick,
+  montageMode = false
 }: FloatingOrganismsProps) => {
   const { isMobile, isTablet, isTV } = useResponsive()
 
@@ -30,8 +32,17 @@ export const FloatingOrganisms = ({
           key={org.id}
           className={`absolute ${challengeMode ? '' : 'cursor-pointer'} ${hoveredOrganism === org.id ? 'z-50' : 'z-20'}`}
           style={{ left: org.position.x, top: org.position.y }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={isTransitioning ? {
+          initial={{ 
+            opacity: 0, 
+            scale: 0,
+            x: montageMode ? 200 : 0
+          }}
+          animate={montageMode ? { 
+            opacity: [0, 1, 1, 0],
+            x: -window.innerWidth - 300,
+            scale: baseScale,
+            y: [0, -10, 0, 10, 0]
+          } : isTransitioning ? {
             opacity: 0,
             x: '-100vw',
             scale: challengeMode ? challengeScale : baseScale
@@ -40,7 +51,23 @@ export const FloatingOrganisms = ({
             scale: challengeMode ? challengeScale : baseScale,
             y: [0, -10, 0]
           }}
-          transition={{
+          transition={montageMode ? {
+            x: {
+              duration: 2.5,
+              delay: org.id * 0.3,
+              ease: "linear"
+            },
+            opacity: {
+              duration: 2.5,
+              delay: org.id * 0.3
+            },
+            y: {
+              duration: 0.8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            },
+            scale: { duration: 0.3 }
+          } : {
             y: {
               duration: org.floatDuration || 2,
               repeat: Infinity,
