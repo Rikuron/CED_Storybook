@@ -22,9 +22,9 @@ export const DinosaurLand = ({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="absolute bottom-0 left-0 right-0 z-15"
-          initial={{ y: '100%' }}
-          animate={{ y: 0 }}
+          className="absolute inset-0 z-20"
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
           transition={{ duration: 1.5, ease: 'easeOut' }}
         >
           {/* Smaller Dinosaur (left side) */}
@@ -33,15 +33,15 @@ export const DinosaurLand = ({
             alt="Small dinosaur"
             className={`absolute object-contain ${isInteractive ? 'cursor-pointer' : ''}`}
             style={{
-              bottom: isMobile ? '10%' : isTablet ? '12%' : isTV ? '15%' : '12%',
-              left: isMobile ? '2%' : '5%',
-              height: isMobile ? '20%' : isTablet ? '30%' : isTV ? '35%' : '32%',
+              bottom: isMobile ? '10vh' : isTablet ? '12vh' : isTV ? '15vh' : '12vh',
+              left: isMobile ? '2vw' : isTV ? '8vw' : '15vw',
+              height: isMobile ? '20vh' : isTablet ? '30vh' : isTV ? '35vh' : '32vh',
               pointerEvents: isInteractive ? 'auto' : 'none'
             }}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, x: 0 }}
             animate={{ 
               opacity: 1, 
-              y: 0,
+              x: 0,
               filter: isInteractive
                 ? 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))'
                 : 'none' 
@@ -61,15 +61,15 @@ export const DinosaurLand = ({
             alt="Big dinosaur"
             className={`absolute object-contain ${isInteractive ? 'cursor-pointer' : ''}`}
             style={{
-              bottom: isMobile ? '5%' : isTablet ? '8%' : isTV ? '10%' : '8%',
-              right: isMobile ? '2%' : '8%',
-              height: isMobile ? '30%' : isTablet ? '50%' : isTV ? '65%' : '60%',
+              bottom: isMobile ? '5vh' : isTablet ? '8vh' : isTV ? '10vh' : '8vh',
+              right: isMobile ? '2vw' : '6vw',
+              height: isMobile ? '30vh' : isTablet ? '70vh' : isTV ? '65vh' : '60vh',
               pointerEvents: isInteractive ? 'auto' : 'none'
             }}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, x: 0 }}
             animate={{ 
               opacity: 1, 
-              y: 0,
+              x: 0,
               filter: isInteractive
                 ? 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))'
                 : 'none' 

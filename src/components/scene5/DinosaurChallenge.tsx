@@ -34,8 +34,8 @@ export const DinosaurChallenge = ({
           <motion.div
             className={`absolute z-40 flex items-center ${isTV ? 'gap-8' : 'gap-2'}`}
             style={{
-              top: isMobile ? '50%' : isTV ? '45%' : '48%',
-              left: isMobile ? '25%' : '27.5%'
+              top: isMobile ? '50%' : isTV ? '55%' : '60%',
+              left: isMobile ? '25%' : isTV ? '29%' : '33.5%'
             }}
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: [-smallBodyMove, 0, -smallBodyMove], opacity: 1 }}
@@ -57,8 +57,8 @@ export const DinosaurChallenge = ({
           <motion.div
             className={`absolute z-40 flex items-center ${isTV ? 'gap-8' : 'gap-2'}`}
             style={{
-              top: isMobile ? '50%' : isTV ? '45%' : '48%',
-              right: isMobile ? '25%' : isTV ? '40%' : '37.5%'
+              top: isMobile ? '50%' : isTV ? '55%' : '60%',
+              right: isMobile ? '25%' : isTV ? '37.5%' : '35%'
             }}
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: [bigBodyMove, 0, bigBodyMove], opacity: 1 }}
@@ -80,7 +80,7 @@ export const DinosaurChallenge = ({
           <motion.div
             className="absolute z-40 left-1/2 -translate-x-1/2 text-center"
             style={{
-              bottom: isMobile ? '12%' : isTablet ? '15%' : isTV ? '12%' : '15%'
+              bottom: '5%'
             }}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
