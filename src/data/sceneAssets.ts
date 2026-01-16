@@ -37,8 +37,8 @@ export const sceneAssets: Record<number, string[]> = {
   ],
   5: [
     '/initial_assets/1_Diego_Default.png',
-    '/audio/Velociraptor_audio.mp3',
-    '/audio/Brachiosaurus_audio.mp3',
+    '/audio/Velociraptor_Audio.mp3',
+    '/audio/Brachiosaurus_Audio.mp3',
     '/background/scene5_bg.png',
     '/initial_assets/bigger_dinosaur.png',
     '/initial_assets/7_SmallDinosaur.png',
