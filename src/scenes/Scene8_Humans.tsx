@@ -176,7 +176,7 @@ export const Scene8_Humans = ({ onNext }: Scene8Props) => {
     >
       {/* Background - Same as Scene 7 */}
       <img
-        src="/background/scene7_bg.png"
+        src="/background/scene5_bg.png"
         alt="Humans era background"
         className="absolute inset-0 w-full h-full object-cover"
       />

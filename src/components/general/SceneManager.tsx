@@ -1,5 +1,7 @@
-import { useState } from "react"
-import { AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useAssetPreloader } from "../../hooks/useAssetPreloader"
+import { sceneAssets } from "../../data/sceneAssets"
 import { Scene1_Title } from "../../scenes/Scene1_Title"
 import { Scene2_Volcanic } from "../../scenes/Scene2_Volcanic"
 import { Scene3_Underwater } from "../../scenes/Scene3_Underwater"
@@ -13,10 +15,44 @@ import { Scene10_Montage } from "../../scenes/Scene10_Montage"
 
 export const SceneManager = () => {
   const [currentScene, setCurrentScene] = useState(1)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [pendingScene, setPendingScene] = useState<number | null>(null)
+
+  // Preload assets for the pending scene (or current scene on initial load)
+  const { isLoaded } = useAssetPreloader(
+    sceneAssets[pendingScene ?? currentScene] ?? []
+  )
+
+  // Background preload for the NEXT scene while viewing current
+  useEffect(() => {
+    const nextSceneNum = currentScene >= 10 ? 1 : currentScene + 1
+    const nextAssets = sceneAssets[nextSceneNum] ?? []
+    
+    // Silently preload next scene's assets in background
+    nextAssets.forEach(src => {
+      const img = new Image()
+      img.src = src
+    })
+  }, [currentScene])
 
   const nextScene = () => {
-    setCurrentScene((prev) => prev >= 10 ? 1 : prev + 1)
+    const next = currentScene >= 10 ? 1 : currentScene + 1
+    setIsTransitioning(true)
+    setPendingScene(next)
   }
+
+  // Complete transition once assets are loaded
+  useEffect(() => {
+    if (isTransitioning && isLoaded && pendingScene !== null) {
+      // Small delay to ensure black screen is visible 
+      const timer = setTimeout(() => {
+        setCurrentScene(pendingScene)
+        setPendingScene(null)
+        setIsTransitioning(false)
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [isTransitioning, isLoaded, pendingScene])
 
   const renderScene = () => {
     console.log("Current Scene: ", currentScene)
@@ -48,8 +84,22 @@ export const SceneManager = () => {
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-black">
+      {/* Loading overlay - shows during transition until assets are ready */}
       <AnimatePresence>
-        {renderScene()}
+        {isTransitioning && (
+          <motion.div
+            className="absolute inset-0 bg-black z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Only render scene when NOT transitioning */}
+      <AnimatePresence mode="wait">
+        {!isTransitioning && renderScene()}
       </AnimatePresence>
     </div>
   )

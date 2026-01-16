@@ -65,8 +65,6 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         const sizeVariation = isMobile ? 2 : isTablet ? 3 : isTV ? 12 : 4
         const xDrift = isMobile ? 25 : isTablet ? 35 : isTV ? 100 : 50
 
-        
-
         return (
           <motion.div 
             key={`ash-${i}`}

@@ -27,13 +27,6 @@ export const DinosaurLand = ({
           animate={{ y: 0 }}
           transition={{ duration: 1.5, ease: 'easeOut' }}
         >
-          {/* Land Image */}
-          <img
-            src="/initial_assets/scene5_land.png"
-            alt="Prehistoric land"
-            className="w-full h-auto"
-          />
-
           {/* Smaller Dinosaur (left side) */}
           <motion.img
             src="/initial_assets/7_SmallDinosaur.png"
