@@ -230,6 +230,7 @@ export const Scene8_Humans = ({ onNext }: Scene8Props) => {
         {showNarration1 && (
           <NarrationDialogue
             text="Diego met early humans who walked upright, made tools, and worked together in groups."
+            voiceoverSrc="/audio/dialogue/Narration_8-1.mp3"
             delay={500}
             onComplete={handleNarration1Complete}
           />
@@ -241,6 +242,7 @@ export const Scene8_Humans = ({ onNext }: Scene8Props) => {
         {showNarration2 && (
           <NarrationDialogue
             text="Their growing brains allowed problem-solving, communication, and cooperation. Cultural evolution—learning and sharing knowledge—became a powerful survival advantage for humans."
+            voiceoverSrc="/audio/dialogue/Narration_8-2.mp3"
             delay={500}
             onComplete={handleNarration2Complete}
           />

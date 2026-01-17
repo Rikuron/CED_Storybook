@@ -156,6 +156,7 @@ export const Scene1_Title = ({ onNext }: Scene1Props) => {
         {showDiego && !enteringEarth && (
           <NarrationDialogue
             text="Meet Diego, a curious time traveler who wants to understand how life on Earth changed through millions of years. Together with Diego, you will travel through time and discover how simple life forms transformed into the diverse organisms we see today."
+            voiceoverSrc="/audio/dialogue/Narration_1-1.mp3"
             delay={1500}
             speed={25}
             onComplete={() => setDialogueComplete(true)}

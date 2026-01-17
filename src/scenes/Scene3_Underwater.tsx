@@ -311,6 +311,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
         {showFishPhase && transitionDialoguePhase === 0 && (
           <NarrationDialogue 
             text="As time passed, Diego noticed changes beneath the ocean. Some organisms developed fins for swimming, gills for breathing underwater, and hard shells for protection."
+            voiceoverSrc="/audio/dialogue/Narration_3-1.mp3"
             delay={2500}
             speed={25}
             onComplete={() => {
@@ -325,6 +326,7 @@ export const Scene3_Underwater = ({ onNext }: Scene3Props) => {
         {isTransitioning && transitionDialoguePhase === 1 && (
           <NarrationDialogue 
             text="These traits were not random—they helped organisms survive better than others. Over generations, organisms with helpful traits lived longer and reproduced more. This process is known as natural selection."
+            voiceoverSrc="/audio/dialogue/Narration_3-2.mp3"
             delay={500}
             speed={25}
             onComplete={() => {

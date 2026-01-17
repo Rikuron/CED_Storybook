@@ -169,6 +169,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         {showDialogue && dialoguePhase === 0 && (
           <NarrationDialogue 
             text="Diego stepped onto a strange version of Earth—hot, rocky, and empty. There were no trees, animals, or people. The oceans were forming, filled with chemicals and energy from heat and lightning."
+            voiceoverSrc="/audio/dialogue/Narration_2-1.mp3"
             delay={500}
             speed={25}
             onComplete={() => setTimeout(() => setDialoguePhase(1), 2500)}
@@ -195,6 +196,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         {dialoguePhase === 1 && (
           <NarrationDialogue 
             text="Deep beneath the water, tiny living organisms appeared. These single-celled organisms were the first life forms, capable of reproduction and basic survival."
+            voiceoverSrc="/audio/dialogue/Narration_2-2.mp3"
             delay={500}
             speed={25}
             onComplete={() => setTimeout(() => setDialoguePhase(2), 2500)}
@@ -221,6 +223,7 @@ export const Scene2_Volcanic = ({ onNext }: Scene2Props) => {
         {dialoguePhase === 2 && (
           <NarrationDialogue 
             text="Though simple, they carried the building blocks of all future life."
+            voiceoverSrc="/audio/dialogue/Narration_2-3.mp3"
             delay={500}
             speed={25}
             onComplete={() => setTimeout(() => setDialoguePhase(3), 2500)}

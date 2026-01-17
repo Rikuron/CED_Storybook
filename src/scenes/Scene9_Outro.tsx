@@ -224,6 +224,7 @@ export const Scene9_Outro = ({ onNext }: Scene9Props) => {
         {showNarration1 && (
           <NarrationDialogue
             text="Diego returned to the present and realized that evolution never truly ends."
+            voiceoverSrc="/audio/dialogue/Narration_9-1.mp3"
             delay={500}
             speed={30}
             onComplete={handleNarration1Complete}
@@ -236,6 +237,7 @@ export const Scene9_Outro = ({ onNext }: Scene9Props) => {
         {showNarration2 && (
           <NarrationDialogue
             text="Organisms today continue to adapt due to environmental changes, technology, and human activities."
+            voiceoverSrc="/audio/dialogue/Narration_9-2.mp3"
             delay={500}
             speed={30}
             onComplete={handleNarration2Complete}
@@ -248,6 +250,7 @@ export const Scene9_Outro = ({ onNext }: Scene9Props) => {
         {showNarration3 && (
           <NarrationDialogue
             text="Evolution connects all living things through a shared history of change."
+            voiceoverSrc="/audio/dialogue/Narration_9-3.mp3"
             delay={500}
             speed={30}
             onComplete={handleNarration3Complete}

@@ -168,6 +168,7 @@ export const Scene4_Amphibian = ({ onNext }: Scene4Props) => {
         {showNarration1 && (
           <NarrationDialogue 
             text="Diego gasped as he saw creatures crawling out of the water. These organisms evolved lungs to breathe air and stronger limbs to move on land."
+            voiceoverSrc="/audio/dialogue/Narration_4-1.mp3"
             delay={300}
             speed={30}
             onComplete={handleNarration1Complete}
@@ -180,6 +181,7 @@ export const Scene4_Amphibian = ({ onNext }: Scene4Props) => {
         {showNarration2 && (
           <NarrationDialogue 
             text="Plants had already begun growing on land, producing oxygen and food."
+            voiceoverSrc="/audio/dialogue/Narration_4-2.mp3"
             delay={300}
             speed={30}
             onComplete={handleNarration2Complete}
@@ -192,6 +194,7 @@ export const Scene4_Amphibian = ({ onNext }: Scene4Props) => {
         {showNarration3 && (
           <NarrationDialogue 
             text="This major evolutionary step allowed life to spread into new environments, avoid competition in the seas, and increase chances of survival."
+            voiceoverSrc="/audio/dialogue/Narration_4-3.mp3"
             delay={300}
             speed={30}
             onComplete={handleNarration3Complete}

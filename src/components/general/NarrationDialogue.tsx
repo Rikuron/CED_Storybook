@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
+import { useEffect, useState, useRef } from "react"
 import { TypeWriter } from "./TypeWriter"
+import { useNarratorVoiceover } from "../../hooks/useNarratorVoiceover"
 import { useResponsive } from "../../hooks/useResponsive"
 
 interface NarrationDialogueProps {
@@ -8,6 +10,7 @@ interface NarrationDialogueProps {
   speed?: number
   onComplete?: () => void
   className?: string
+  voiceoverSrc?: string
 }
 
 export const NarrationDialogue = ({
@@ -15,12 +18,35 @@ export const NarrationDialogue = ({
   delay = 500,
   speed = 25,
   onComplete,
-  className = ""
+  className = "",
+  voiceoverSrc,
 }: NarrationDialogueProps) => {
   const { isMobile, isTablet, isTV } = useResponsive()
+  const { play, isEnabled } = useNarratorVoiceover()
+
+  const [typingComplete, setTypingComplete] = useState(false)
+  const [audioComplete, setAudioComplete] = useState(!voiceoverSrc)
+  const hasCalledComplete = useRef(false)
 
   const textStroke = isMobile ? '0.4px #000' : isTablet ? '0.25px #000' : isTV ? '4px #000' : '0.8px #000'
   const fontSize = isMobile ? '0.875rem' : isTablet ? '1rem' : isTV ? '5.5rem' : '1.5rem'
+
+  // Play voiceover when component mounts (after delay)
+  useEffect(() => {
+    if (voiceoverSrc && isEnabled) {
+      const timer = setTimeout(() => play(voiceoverSrc, () => setAudioComplete(true)), delay)
+
+      return () => clearTimeout(timer)
+    }
+  }, [voiceoverSrc, play, delay, isEnabled])
+
+  // Call onComplete when BOTH typing and audio are done
+  useEffect(() => {
+    if (typingComplete && audioComplete && !hasCalledComplete.current) {
+      hasCalledComplete.current = true
+      onComplete?.()
+    }
+  }, [typingComplete, audioComplete, onComplete])
 
   return (
     <motion.div
@@ -42,7 +68,7 @@ export const NarrationDialogue = ({
           delay={delay}
           speed={speed}
           className="text-white font-helvetica-blk"
-          onComplete={onComplete}
+          onComplete={() => setTypingComplete(true)}
         />
       </p>
     </motion.div>

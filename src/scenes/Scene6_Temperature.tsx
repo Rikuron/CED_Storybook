@@ -241,6 +241,7 @@ export const Scene6_Temperature = ({ onNext }: Scene6Props) => {
         {showNarration1 && (
           <NarrationDialogue
             text="Suddenly, Diego felt the Earth shake. Climate changes occurred, food sources disappeared, and many organisms became extinct."
+            voiceoverSrc="/audio/dialogue/Narration_6-1.mp3"
             delay={300}
             speed={30}
             onComplete={handleNarration1Complete}
@@ -253,6 +254,7 @@ export const Scene6_Temperature = ({ onNext }: Scene6Props) => {
         {showNarration2 && (
           <NarrationDialogue
             text="However, some animals survived because they already had traits that helped them adapt. Evolution does not plan ahead—organisms survive because they are already suited to change."
+            voiceoverSrc="/audio/dialogue/Narration_6-2.mp3"
             delay={300}
             speed={30}
             onComplete={handleNarration2Complete}

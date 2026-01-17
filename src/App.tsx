@@ -1,19 +1,24 @@
 import { SceneManager } from './components/general/SceneManager'
-import { MusicToggle } from './components/general/MusicToggle'
+import { SoundControls } from './components/general/SoundControls'
 import { useBackgroundMusic } from './hooks/useBackgroundMusic'
+import { useNarratorVoiceover } from './hooks/useNarratorVoiceover'
 
 function App() {
-  const { isPlaying, volume, toggle, setVolume } = useBackgroundMusic('/audio/Background_Music.mp3', 0.3)
-  
+  const { isPlaying, volume, toggle, setVolume } = useBackgroundMusic('/audio/sfx/Background_Music.mp3', 0.3)
+  const voiceover = useNarratorVoiceover(0.8)
 
   return (
     <>
       <SceneManager />
-      <MusicToggle 
-        isPlaying={isPlaying} 
-        volume={volume} 
-        onToggle={toggle}
-        onVolumeChange={setVolume} 
+      <SoundControls
+        isMusicPlaying={isPlaying}
+        musicVolume={volume}
+        onMusicToggle={toggle}
+        onMusicVolumeChange={setVolume}
+        isVoiceoverEnabled={voiceover.isEnabled}
+        voiceoverVolume={voiceover.volume}
+        onVoiceoverToggle={voiceover.toggleEnabled}
+        onVoiceoverVolumeChange={voiceover.setVolume}
       />
     </>
   )

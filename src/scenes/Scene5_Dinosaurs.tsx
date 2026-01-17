@@ -32,8 +32,8 @@ export const Scene5_Dinosaurs = ({ onNext }: Scene5Props) => {
   const biggerRoarRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => { 
-    smallerRoarRef.current = new Audio('/audio/Velociraptor_Audio.mp3')
-    biggerRoarRef.current = new Audio('/audio/Brachiosaurus_Audio.mp3')
+    smallerRoarRef.current = new Audio('/audio/sfx/Velociraptor_Audio.mp3')
+    biggerRoarRef.current = new Audio('/audio/sfx/Brachiosaurus_Audio.mp3')
 
     const landingTimer = setTimeout(() => {
       setIsLanding(true)
@@ -175,7 +175,8 @@ export const Scene5_Dinosaurs = ({ onNext }: Scene5Props) => {
       <AnimatePresence>
         {showNarration1 && (
           <NarrationDialogue 
-            text="Diego entered an age dominated by dinosaurs. He met giant herbivoresthat ate plants and fierce predators with sharp teeth."
+            text="Diego entered an age dominated by dinosaurs. He met giant herbivores that ate plants and fierce predators with sharp teeth."
+            voiceoverSrc="/audio/dialogue/Narration_5-1.mp3"
             delay={300}
             speed={30}
             onComplete={handleNarrationComplete}
@@ -188,6 +189,7 @@ export const Scene5_Dinosaurs = ({ onNext }: Scene5Props) => {
         {showNarration2 && (
           <NarrationDialogue 
             text="Dinosaurs evolved different traits—size, speed, and armor—to survive in their environments. Becauase of these adaptations, dinosaurs ruled Earth for millions of years."
+            voiceoverSrc="/audio/dialogue/Narration_5-2.mp3"
             delay={300}
             speed={30}
             onComplete={() => {
