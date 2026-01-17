@@ -18,7 +18,6 @@ export const MusicToggle = ({
   const [isHovered, setIsHovered] = useState(false)
   const { isMobile, isTablet, isTV } = useResponsive()
 
-  // Sizes: mobile -> tablet -> desktop -> TV (4K)
   const buttonSize = isMobile ? 32 : isTablet ? 36 : isTV ? 140 : 40
   const fontSize = isMobile ? '1rem' : isTablet ? '1.1rem' : isTV ? '4.5rem' : '1.25rem'
   const sliderWidth = isMobile ? 48 : isTablet ? 60 : isTV ? 300 : 80

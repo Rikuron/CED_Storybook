@@ -6,6 +6,7 @@ export const sceneAssets: Record<number, string[]> = {
   1: [
     "/initial_assets/1_Diego_Default.png",
     '/background/space_bg.png',
+    '/audio/Background_Music.mp3',
     '/initial_assets/1_Earth.png',
     "/initial_assets/clouds.png"
   ],
