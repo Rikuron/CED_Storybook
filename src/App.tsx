@@ -1,5 +1,6 @@
 import { SceneManager } from './components/general/SceneManager'
 import { SoundControls } from './components/general/SoundControls'
+import { FullScreenPrompt } from './components/general/FullScreenPrompt'
 import { useBackgroundMusic } from './hooks/useBackgroundMusic'
 import { useNarratorVoiceover } from './hooks/useNarratorVoiceover'
 
@@ -20,6 +21,7 @@ function App() {
         onVoiceoverToggle={voiceover.toggleEnabled}
         onVoiceoverVolumeChange={voiceover.setVolume}
       />
+      <FullScreenPrompt />
     </>
   )
 }
