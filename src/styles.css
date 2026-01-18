@@ -13,7 +13,9 @@ html,
 body,
 #root {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   overflow: hidden;
 }
 
@@ -108,12 +110,3 @@ code {
   --font-canva-sans-regular: canva-sans-regular, "sans-serif";
   --font-canva-sans-bold: canva-sans-bold, "sans-serif";
 }
-
-
-/* Font Size Utility Classes */
-.text-fluid-sm { font-size: clamp(0.875rem, 2vw, 1.25rem); }
-.text-fluid-base { font-size: clamp(1rem, 2.5vw, 1.5rem); }
-.text-fluid-lg { font-size: clamp(1.25rem, 3vw, 2rem); }
-.text-fluid-xl { font-size: clamp(1.5rem, 4vw, 3rem); }
-.text-fluid-2xl { font-size: clamp(2rem, 5vw, 4rem); }
-.text-fluid-3xl { font-size: clamp(2.5rem, 6vw, 5rem); }
