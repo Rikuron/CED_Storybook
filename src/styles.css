@@ -17,6 +17,8 @@ body,
   min-height: 100dvh;
   min-height: -webkit-fill-available;
   overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  box-sizing: border-box;
 }
 
 code {
